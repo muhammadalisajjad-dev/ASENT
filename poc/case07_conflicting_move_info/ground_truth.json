@@ -1,0 +1,9 @@
+{
+  "case": "case07_conflicting_move_info",
+  "category": "conflicting_move_information",
+  "baseline_protected_asset": "aws_s3_bucket.customer_data",
+  "intended_successors": [],
+  "authorization_actual": "indeterminate",
+  "expected_decision": "UNKNOWN",
+  "notes": "Explicit moved information points at aws_s3_bucket.legacy_backup while configuration, reference and policy-target evidence point at aws_s3_bucket.customer_data_v2. The conflict is not resolvable from local evidence."
+}

@@ -1,0 +1,12 @@
+{
+  "case": "case06_ambiguous_successors",
+  "category": "ambiguous_successors",
+  "baseline_protected_asset": "aws_s3_bucket.customer_data",
+  "intended_successors": [
+    "aws_s3_bucket.customer_data_hot",
+    "aws_s3_bucket.customer_data_cold"
+  ],
+  "authorization_actual": "indeterminate",
+  "expected_decision": "UNKNOWN",
+  "notes": "Two candidates are equally supported by configuration, reference, dependency, position and policy-target evidence; the evidence cannot safely select one."
+}

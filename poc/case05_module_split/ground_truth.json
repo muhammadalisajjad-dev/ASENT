@@ -1,0 +1,11 @@
+{
+  "case": "case05_module_split",
+  "category": "module_split",
+  "baseline_protected_asset": "aws_s3_bucket.customer_data",
+  "intended_successors": [
+    "module.records.aws_s3_bucket.primary"
+  ],
+  "authorization_actual": "preserved",
+  "expected_decision": "PRESERVED",
+  "notes": "One baseline resource becomes two candidate resources. Configuration continuity and the module-output reference path make the primary bucket the unique defensible successor."
+}

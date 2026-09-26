@@ -1,0 +1,11 @@
+{
+  "case": "case04_policy_relationship_rewrite",
+  "category": "policy_relationship_rewrite",
+  "baseline_protected_asset": "aws_s3_bucket.customer_data",
+  "intended_successors": [
+    "aws_s3_bucket.records_raw"
+  ],
+  "authorization_actual": "preserved",
+  "expected_decision": "PRESERVED",
+  "notes": "Bucket and policy addresses both change and the managed policy becomes an inline role policy; the same actions remain bound to the same logical asset through configuration and reference evidence."
+}

@@ -1,0 +1,11 @@
+{
+  "case": "case03_wrong_binding",
+  "category": "wrong_binding",
+  "baseline_protected_asset": "aws_s3_bucket.customer_data",
+  "intended_successors": [
+    "aws_s3_bucket.customer_data_v2"
+  ],
+  "authorization_actual": "bound_to_other_asset",
+  "expected_decision": "REGRESSED",
+  "notes": "The obligation-shaped policy still exists and is attached to the app role, but it governs aws_s3_bucket.analytics_dump instead of the logical successor aws_s3_bucket.customer_data_v2."
+}

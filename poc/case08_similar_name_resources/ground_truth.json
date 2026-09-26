@@ -1,0 +1,12 @@
+{
+  "case": "case08_similar_name_resources",
+  "category": "similar_name_resources",
+  "baseline_protected_asset": "aws_s3_bucket.customer_data",
+  "intended_successors": [
+    "module.hold.aws_s3_bucket.customer_data",
+    "aws_s3_bucket.customer_data_migrated"
+  ],
+  "authorization_actual": "indeterminate",
+  "expected_decision": "UNKNOWN",
+  "notes": "A name-based matcher would select module.hold.aws_s3_bucket.customer_data because the resource name matches exactly. Structural evidence is symmetric, so no successor is defensible."
+}

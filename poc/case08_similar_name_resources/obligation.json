@@ -1,0 +1,10 @@
+{
+  "obligation_id": "S3-APPROLE-CUSTOMERDATA",
+  "principal": "aws_iam_role.app",
+  "actions": [
+    "s3:GetObject",
+    "s3:PutObject"
+  ],
+  "protected_asset": "aws_s3_bucket.customer_data",
+  "resource_scope": "arn:aws:s3:::customer-data/*"
+}

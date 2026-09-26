@@ -1,0 +1,11 @@
+{
+  "case": "case01_legitimate_move",
+  "category": "legitimate_move",
+  "baseline_protected_asset": "aws_s3_bucket.customer_data",
+  "intended_successors": [
+    "aws_s3_bucket.app_customer_records"
+  ],
+  "authorization_actual": "preserved",
+  "expected_decision": "PRESERVED",
+  "notes": "Resource address changed through an explicit moved block; the same bucket configuration, role and least-privilege boundary remain attached to the successor."
+}

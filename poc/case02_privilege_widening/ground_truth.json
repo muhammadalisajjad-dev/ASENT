@@ -1,0 +1,11 @@
+{
+  "case": "case02_privilege_widening",
+  "category": "privilege_widening",
+  "baseline_protected_asset": "aws_s3_bucket.customer_data",
+  "intended_successors": [
+    "aws_s3_bucket.customer_data_store"
+  ],
+  "authorization_actual": "widened",
+  "expected_decision": "REGRESSED",
+  "notes": "Successor is identifiable from configuration continuity, but the role gains s3:ListBucket/s3:DeleteObject and the resource scope becomes arn:aws:s3:::*."
+}
