@@ -1,0 +1,16 @@
+{
+  "case": "fixture02_rejected_cross_owner_read",
+  "expected_decision": "REJECTED",
+  "expected_exit_code": 3,
+  "description": "Secure baseline plus an AI-style authorization regression: the invoice read path restricts ownership to draft invoices only, so authenticated user B incorrectly reads invoice 1 owned by user A. Owner functionality keeps working.",
+  "expected_changed_files": ["app.py"],
+  "expected_localized_route": "/api/invoices/<int:invoice_id>",
+  "expected_regressed_invariants": ["OWN-READ-DENY"],
+  "expected_probe_behavior": {
+    "OWN-READ-ALLOW": {"baseline": 200, "candidate": 200},
+    "OWN-READ-DENY": {"baseline": 403, "candidate": 200},
+    "AUTHN-READ-DENY": {"baseline": 401, "candidate": 401},
+    "OWN-UPDATE-ALLOW": {"baseline": 200, "candidate": 200},
+    "OWN-UPDATE-DENY": {"baseline": 403, "candidate": 403}
+  }
+}

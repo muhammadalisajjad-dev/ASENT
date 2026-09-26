@@ -1,0 +1,31 @@
+{
+  "schema_version": "asent.satra_rv.scenario/0.1",
+  "description": "Authenticated user A (alice) owns invoice 1. Authenticated user B (bob) requests invoice 1.",
+  "application": {
+    "module": "app.py",
+    "factory": "create_app"
+  },
+  "session": {
+    "login_path": "/api/login",
+    "username_field": "username",
+    "password_field": "password",
+    "success_status": 200
+  },
+  "actors": [
+    {
+      "id": "owner",
+      "username": "alice",
+      "password": "alice-invoice-secret",
+      "display_name": "user A (alice), owner of invoice 1"
+    },
+    {
+      "id": "non_owner",
+      "username": "bob",
+      "password": "bob-invoice-secret",
+      "display_name": "user B (bob), a different authenticated user"
+    }
+  ],
+  "path_params": {
+    "invoice_id": "1"
+  }
+}

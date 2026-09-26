@@ -1,0 +1,15 @@
+{
+  "case": "fixture03_inconclusive_nonsecurity_change",
+  "expected_decision": "INCONCLUSIVE",
+  "expected_exit_code": 4,
+  "description": "Secure baseline plus a candidate change confined to a non-security helper module. No security-sensitive Flask region can be localized, so the evidence is insufficient to decide even though the deterministic probes still pass.",
+  "expected_changed_files": ["formatting.py"],
+  "expected_localized_route": null,
+  "expected_probe_behavior": {
+    "OWN-READ-ALLOW": {"baseline": 200, "candidate": 200},
+    "OWN-READ-DENY": {"baseline": 403, "candidate": 403},
+    "AUTHN-READ-DENY": {"baseline": 401, "candidate": 401},
+    "OWN-UPDATE-ALLOW": {"baseline": 200, "candidate": 200},
+    "OWN-UPDATE-DENY": {"baseline": 403, "candidate": 403}
+  }
+}

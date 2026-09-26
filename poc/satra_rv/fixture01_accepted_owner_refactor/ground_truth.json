@@ -1,0 +1,15 @@
+{
+  "case": "fixture01_accepted_owner_refactor",
+  "expected_decision": "ACCEPTED",
+  "expected_exit_code": 0,
+  "description": "Secure baseline plus a secure candidate that only refactors the inline ownership checks into a shared _require_owner helper. The enforced property is unchanged.",
+  "expected_changed_files": ["app.py"],
+  "expected_localized_route": "/api/invoices/<int:invoice_id>",
+  "expected_probe_behavior": {
+    "OWN-READ-ALLOW": {"baseline": 200, "candidate": 200},
+    "OWN-READ-DENY": {"baseline": 403, "candidate": 403},
+    "AUTHN-READ-DENY": {"baseline": 401, "candidate": 401},
+    "OWN-UPDATE-ALLOW": {"baseline": 200, "candidate": 200},
+    "OWN-UPDATE-DENY": {"baseline": 403, "candidate": 403}
+  }
+}
