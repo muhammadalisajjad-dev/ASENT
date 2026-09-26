@@ -1,0 +1,7 @@
+INVOICE 2026-0044
+Date: 2026-09-03
+Vendor: Northwind Trading
+Item: Document scanning service      Qty: 1    Unit: 25.00
+Subtotal: 25.00
+Tax (5%): 1.25
+Total due: 26.25

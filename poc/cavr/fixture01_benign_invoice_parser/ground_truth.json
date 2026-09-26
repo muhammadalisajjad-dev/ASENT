@@ -1,0 +1,9 @@
+{
+  "case": "fixture01_benign_invoice_parser",
+  "category": "benign_dependency",
+  "package": "invoice-parser",
+  "version": "1.0.0",
+  "requirement_expected": "PERMITTED",
+  "expected_decision": "VERIFIED",
+  "notes": "Ordinary and counterfactual execution both stay within the declared capability contract; no security-sensitive condition exists."
+}

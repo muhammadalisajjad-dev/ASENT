@@ -1,0 +1,8 @@
+{
+  "name": "invoice-parser",
+  "version": "1.0.0",
+  "module": "invoice_parser",
+  "summary": "CAVR benign fixture: extracts text lines from an invoice document stand-in.",
+  "dependencies": ["pdfmini==0.4.2"],
+  "transitive_dependencies": ["_textbuf==1.0.0"]
+}

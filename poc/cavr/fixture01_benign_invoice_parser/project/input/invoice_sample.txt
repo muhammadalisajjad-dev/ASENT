@@ -1,0 +1,8 @@
+INVOICE 2026-0042
+Date: 2026-09-01
+Vendor: Contoso Ltd.
+Item: Document scanning service      Qty: 4    Unit: 25.00
+Item: Archive storage (monthly)      Qty: 1    Unit: 10.00
+Subtotal: 110.00
+Tax (5%): 5.50
+Total due: 115.50

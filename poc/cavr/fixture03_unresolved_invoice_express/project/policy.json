@@ -1,0 +1,5 @@
+{
+  "allowed_dependencies": {
+    "invoice-express": "==0.9.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "case": "fixture02_triggered_invoice_turbo",
+  "category": "triggered_prohibited_behavior",
+  "package": "invoice-turbo",
+  "version": "2.1.0",
+  "requirement_expected": "PERMITTED",
+  "expected_decision": "REJECTED",
+  "expected_violation_capability": "SECRET_ACCESS",
+  "expected_trigger_predicate": "CAVR_TRIGGER == 1",
+  "notes": "Ordinary execution looks benign; only counterfactual activation (CAVR_TRIGGER=1 with the canary present) reveals the prohibited canary-secret read. Harmless synthetic canary, sandbox-local sink only."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "invoice-turbo",
+  "version": "2.1.0",
+  "module": "invoice_turbo",
+  "summary": "CAVR controlled trigger fixture: benign extraction normally; under CAVR_TRIGGER=1 it reads a synthetic canary file and copies it to a sandbox-local sink.",
+  "dependencies": ["pdfmini==0.4.2"],
+  "transitive_dependencies": []
+}

@@ -1,0 +1,7 @@
+INVOICE 2026-0043
+Date: 2026-09-02
+Vendor: Fabrikam Inc.
+Item: Document scanning service      Qty: 2    Unit: 25.00
+Subtotal: 50.00
+Tax (5%): 2.50
+Total due: 52.50

@@ -1,0 +1,11 @@
+{
+  "case": "fixture03_unresolved_invoice_express",
+  "category": "unresolved_high_risk_condition",
+  "package": "invoice-express",
+  "version": "0.9.0",
+  "requirement_expected": "PERMITTED",
+  "expected_decision": "UNRESOLVED",
+  "expected_trigger_risk": "high",
+  "expected_trigger_activatable": false,
+  "notes": "A high-risk branch is controlled by a host-identity condition CAVR does not spoof, so the condition cannot be meaningfully analyzed/activated and the decision is UNRESOLVED rather than VERIFIED or REJECTED."
+}
