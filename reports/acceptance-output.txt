@@ -1,0 +1,7 @@
+safe ACCEPT
+block BLOCK
+review REVIEW
+{
+  "checks": 15,
+  "all_passed": true
+}

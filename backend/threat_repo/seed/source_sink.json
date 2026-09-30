@@ -1,0 +1,104 @@
+{
+  "records": [
+    {
+      "id": "BEH-SECRET-NET-001",
+      "category": "source_sink",
+      "name": "SECRET_READ \u2192 NETWORK_CONNECT",
+      "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_event": "SECRET_READ",
+        "sink_event": "NETWORK_CONNECT",
+        "preconditions": [
+          "source/sink attribution",
+          "unjustified capability"
+        ],
+        "rationale": "Prevent unjustified data movement or execution"
+      }
+    },
+    {
+      "id": "BEH-SSH-NET-001",
+      "category": "source_sink",
+      "name": "SSH_KEY_READ \u2192 NETWORK_CONNECT",
+      "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_event": "SSH_KEY_READ",
+        "sink_event": "NETWORK_CONNECT",
+        "preconditions": [
+          "source/sink attribution",
+          "unjustified capability"
+        ],
+        "rationale": "Prevent unjustified data movement or execution"
+      }
+    },
+    {
+      "id": "BEH-CRED-PROC-001",
+      "category": "source_sink",
+      "name": "CREDENTIAL_READ \u2192 PROCESS_EXEC",
+      "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_event": "CREDENTIAL_READ",
+        "sink_event": "PROCESS_EXEC",
+        "preconditions": [
+          "source/sink attribution",
+          "unjustified capability"
+        ],
+        "rationale": "Prevent unjustified data movement or execution"
+      }
+    },
+    {
+      "id": "BEH-DOWNLOAD-PROC-001",
+      "category": "source_sink",
+      "name": "DYNAMIC_DOWNLOAD \u2192 PROCESS_EXEC",
+      "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_event": "DYNAMIC_DOWNLOAD",
+        "sink_event": "PROCESS_EXEC",
+        "preconditions": [
+          "source/sink attribution",
+          "unjustified capability"
+        ],
+        "rationale": "Prevent unjustified data movement or execution"
+      }
+    },
+    {
+      "id": "BEH-FILE-NET-001",
+      "category": "source_sink",
+      "name": "SENSITIVE_FILE_READ \u2192 NETWORK_CONNECT",
+      "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_event": "SENSITIVE_FILE_READ",
+        "sink_event": "NETWORK_CONNECT",
+        "preconditions": [
+          "source/sink attribution",
+          "unjustified capability"
+        ],
+        "rationale": "Prevent unjustified data movement or execution"
+      }
+    }
+  ]
+}

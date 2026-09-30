@@ -1,0 +1,20 @@
+{
+  "evidence": {
+    "status": "INCONCLUSIVE",
+    "route": "GET /invoices/{invoice_id}",
+    "subject": "authenticated normal user",
+    "expectedStatus": 403,
+    "dockerExit": 125,
+    "dockerBackend": "docker",
+    "ollamaAvailable": false,
+    "oracleDiagnosis": "INCONCLUSIVE",
+    "oracleReason": "Counterfactual not independently shown to violate the contract",
+    "ruleId": "AUTHZ.IDOR.001",
+    "action": "GET invoice",
+    "counterfactual": "bypass can_access_invoice ownership guard",
+    "mutantOperator": "AST replace can_access_invoice body with return True",
+    "runId": "c6f6239d62b4",
+    "stale": false,
+    "integrityValid": true
+  }
+}

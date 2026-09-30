@@ -1,0 +1,1096 @@
+{
+  "sha256": "b9ed88609d7990ea2f9d780c29afd9cc7357f13151f2a116f48b1d0b85a9b1ec",
+  "evidence": {
+    "evidence_id": "7dd713857645492d859278ef9e9482db",
+    "run_id": "71edccfa7432",
+    "analyzer": "SATRA",
+    "analyzer_version": "1.0.0",
+    "threat_repo_version": "TR-2026.09.26.001",
+    "threat_repo_digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+    "threat_module_digest": "7cc9d41b731f4be959a93d82ac194f66b6015b3aef8df98b4a45b29d6bff5686",
+    "candidate_snapshot": "08332133447e725ac355297e8de76faeb66d4255790019ce827cca225e87ef73",
+    "input_hash": "15f723f0abb846129658650b0836ae5da5c2cf6247aed9c9bc45767b6ab93552",
+    "status": "ACCEPT",
+    "blocking": false,
+    "residual_uncertainty": [
+      "Bounded authentication, ownership, admin, upload and parameterized-login checks; other vulnerability families are not exhaustively covered"
+    ],
+    "affected_files": [
+      "SRS.md",
+      "dependencies.lock.json",
+      "plan.md",
+      "policy.json",
+      "requirements.txt",
+      "app/__init__.py",
+      "app/main.py",
+      "app/pdf_adapter.py",
+      "app/security.py",
+      "tests/conftest.py",
+      "tests/test_archive.py",
+      "tests/test_functional.py",
+      "tests/test_security.py"
+    ],
+    "evidence_refs": [
+      "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA"
+    ],
+    "details": {
+      "regions": [
+        {
+          "file": "app/main.py",
+          "function": "password_hash",
+          "start": 22,
+          "end": 23,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "input handling"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "create_app",
+          "start": 26,
+          "end": 143,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "input handling"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "db",
+          "start": 36,
+          "end": 39,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "input handling"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "current_user",
+          "start": 52,
+          "end": 59,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "register",
+          "start": 63,
+          "end": 70,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "input handling"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "login",
+          "start": 72,
+          "end": 79,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "me",
+          "start": 81,
+          "end": 81,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "input handling"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "upload",
+          "start": 83,
+          "end": 95,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "input handling"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "list_invoices",
+          "start": 97,
+          "end": 100,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "get_record",
+          "start": 101,
+          "end": 104,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "input handling"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "get_invoice",
+          "start": 106,
+          "end": 109,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "delete_invoice",
+          "start": 111,
+          "end": 116,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "admin_list",
+          "start": 118,
+          "end": 121,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "admin_delete",
+          "start": 123,
+          "end": 125,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/main.py",
+          "function": "archive_old_invoices",
+          "start": 127,
+          "end": 142,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/pdf_adapter.py",
+          "function": "extract_invoice_text",
+          "start": 5,
+          "end": 11,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/security.py",
+          "function": "can_access_invoice",
+          "start": 2,
+          "end": 3,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        },
+        {
+          "file": "app/security.py",
+          "function": "is_admin",
+          "start": 6,
+          "end": 7,
+          "changed": false,
+          "reason": "Mandatory security authority/route region",
+          "families": [
+            "authorization",
+            "authentication"
+          ]
+        }
+      ],
+      "diff": "",
+      "dictionary": [
+        {
+          "id": "AUTHZ.IDOR.001",
+          "cwe": "CWE-639",
+          "family": "authorization / object ownership",
+          "applicability": [
+            "FastAPI",
+            "InvoiceHub"
+          ],
+          "preconditions": [
+            "object ID from request",
+            "authenticated user",
+            "invoice ownership"
+          ],
+          "expected_secure_behavior": "HTTP 403 and no state change",
+          "pytest_template": "trusted_security.py::test_nonowner_denied",
+          "input_classes": [
+            "owner",
+            "nonowner",
+            "unauthenticated",
+            "administrator"
+          ],
+          "counterfactual_template": "bypass can_access_invoice",
+          "validation_rules": [
+            "parses",
+            "secure baseline passes",
+            "valid mutant killed by assertion",
+            "repeatable",
+            "local",
+            "bounded runtime"
+          ],
+          "version": 1,
+          "implementation": "executable bounded InvoiceHub template",
+          "source_id": "SRC-OWASP"
+        },
+        {
+          "id": "AUTHN.001",
+          "cwe": "CWE-306",
+          "family": "authentication",
+          "applicability": [
+            "FastAPI",
+            "InvoiceHub"
+          ],
+          "preconditions": [
+            "private invoice route"
+          ],
+          "expected_secure_behavior": "HTTP 401 without token",
+          "pytest_template": "trusted_security.py::test_unauthenticated_denied",
+          "input_classes": [
+            "missing bearer token"
+          ],
+          "counterfactual_template": null,
+          "validation_rules": [
+            "parses",
+            "baseline passes",
+            "local"
+          ],
+          "version": 1,
+          "implementation": "executable bounded InvoiceHub template",
+          "source_id": "SRC-OWASP"
+        },
+        {
+          "id": "AUTHZ.ADMIN.001",
+          "cwe": "CWE-862",
+          "family": "privilege separation",
+          "applicability": [
+            "FastAPI",
+            "InvoiceHub"
+          ],
+          "preconditions": [
+            "administrator route"
+          ],
+          "expected_secure_behavior": "HTTP 403 for normal user",
+          "pytest_template": "trusted_security.py::test_normal_user_not_admin",
+          "input_classes": [
+            "normal user",
+            "admin"
+          ],
+          "counterfactual_template": null,
+          "validation_rules": [
+            "baseline passes",
+            "local"
+          ],
+          "version": 1,
+          "implementation": "executable bounded InvoiceHub template",
+          "source_id": "SRC-OWASP"
+        },
+        {
+          "id": "INPUT.PDF.001",
+          "cwe": "CWE-434",
+          "family": "unsafe upload",
+          "applicability": [
+            "FastAPI",
+            "InvoiceHub"
+          ],
+          "preconditions": [
+            "PDF upload route"
+          ],
+          "expected_secure_behavior": "Reject non-PDF content",
+          "pytest_template": "trusted_security.py::test_reject_non_pdf",
+          "input_classes": [
+            "text masquerading as PDF"
+          ],
+          "counterfactual_template": null,
+          "validation_rules": [
+            "baseline passes"
+          ],
+          "version": 1,
+          "implementation": "executable bounded InvoiceHub template",
+          "source_id": "SRC-OWASP"
+        }
+      ],
+      "contract": {
+        "rule_id": "AUTHZ.IDOR.001",
+        "version": 1,
+        "subject": "authenticated normal user",
+        "action": "GET invoice",
+        "resource": "invoice owned by another user",
+        "expected_status": 403,
+        "state_effect": "none",
+        "authority": "SRS.md#FR-03",
+        "route": "GET /invoices/{invoice_id}",
+        "authority_sources": [
+          "SRS.md#FR-03",
+          "policy.json#ownership",
+          "trusted baseline app/main.py"
+        ],
+        "srs_digest": "45811d79f5931f932b74dd36694d6962ea67b8b567867a120bd067a192c1db53",
+        "policy_digest": "e963284e836a23f8086092bb77a216615de986a97bc3c718dc5709d8f4faaa8e",
+        "preconditions": [
+          "authenticated normal user",
+          "existing invoice owned by another user"
+        ],
+        "counterfactual": "bypass can_access_invoice ownership guard",
+        "scope": [
+          "app/main.py",
+          "app/security.py"
+        ],
+        "digest": "5a267c7098cff2d7ab2ca4aa0d4c6b414d5abbc793394eefcab6402c2c6221f5"
+      },
+      "static": {
+        "available": true,
+        "tool": "Bandit",
+        "exit_code": 1,
+        "findings": [
+          {
+            "rule": "B108",
+            "severity": "MEDIUM",
+            "confidence": "MEDIUM",
+            "file": "/tmp/asent-final-http-c3g4vhv4/runtime/workspaces/71edccfa7432/snapshot-1/app/main.py",
+            "line": 27,
+            "message": "Probable insecure usage of temp file/directory."
+          },
+          {
+            "rule": "B105",
+            "severity": "LOW",
+            "confidence": "MEDIUM",
+            "file": "/tmp/asent-final-http-c3g4vhv4/runtime/workspaces/71edccfa7432/snapshot-1/app/main.py",
+            "line": 79,
+            "message": "Possible hardcoded password: 'bearer'"
+          }
+        ]
+      },
+      "oracle": {
+        "accepted": true,
+        "diagnosis": "PRESERVED_WITHIN_MODEL",
+        "reason": "Passes secure baseline twice and kills valid ownership bypass",
+        "valid_counterfactual": true,
+        "baseline_original_killed": true,
+        "mutant_operator": "AST replace can_access_invoice body with return True",
+        "counterfactual_scope": "ownership read + delete"
+      },
+      "adaptive": {
+        "available": false,
+        "reason": "Optional Ollama disabled; set ASENT_OLLAMA_MODEL",
+        "validations": []
+      },
+      "executions": {
+        "trusted_baseline": {
+          "available": true,
+          "exit_code": 0,
+          "tests": [
+            {
+              "name": "test_owner_can_read",
+              "classname": "assurance.test_functional",
+              "status": "PASS",
+              "seconds": 0.162,
+              "message": ""
+            },
+            {
+              "name": "test_admin_view",
+              "classname": "assurance.test_functional",
+              "status": "PASS",
+              "seconds": 0.009,
+              "message": ""
+            },
+            {
+              "name": "test_registration_login",
+              "classname": "assurance.test_functional",
+              "status": "PASS",
+              "seconds": 0.043,
+              "message": ""
+            },
+            {
+              "name": "test_archive_boundary_and_ownership",
+              "classname": "assurance.test_functional",
+              "status": "PASS",
+              "seconds": 0.135,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_denied",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.173,
+              "message": ""
+            },
+            {
+              "name": "test_unauthenticated_denied",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.005,
+              "message": ""
+            },
+            {
+              "name": "test_normal_user_not_admin",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_cannot_delete",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.004,
+              "message": ""
+            },
+            {
+              "name": "test_reject_non_pdf",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_sql_login_payload",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            }
+          ],
+          "passed": 10,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration_ms": 1216.13,
+          "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+          "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+          "stdout": "..........                                                               [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n10 passed, 1 warning in 0.56s\n",
+          "stderr": "",
+          "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/trusted_baseline/junit.xml",
+          "junit_sha256": "6ba6b5a828c34f915ac3ca1f1a236f3a79c6d62fbab0ac8f636f39e1848a6886"
+        },
+        "trusted_candidate": {
+          "available": true,
+          "exit_code": 0,
+          "tests": [
+            {
+              "name": "test_owner_can_read",
+              "classname": "assurance.test_functional",
+              "status": "PASS",
+              "seconds": 0.164,
+              "message": ""
+            },
+            {
+              "name": "test_admin_view",
+              "classname": "assurance.test_functional",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_registration_login",
+              "classname": "assurance.test_functional",
+              "status": "PASS",
+              "seconds": 0.046,
+              "message": ""
+            },
+            {
+              "name": "test_archive_boundary_and_ownership",
+              "classname": "assurance.test_functional",
+              "status": "PASS",
+              "seconds": 0.13,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_denied",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.137,
+              "message": ""
+            },
+            {
+              "name": "test_unauthenticated_denied",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_normal_user_not_admin",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_cannot_delete",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.005,
+              "message": ""
+            },
+            {
+              "name": "test_reject_non_pdf",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_sql_login_payload",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            }
+          ],
+          "passed": 10,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration_ms": 1007.27,
+          "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+          "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+          "stdout": "..........                                                               [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n10 passed, 1 warning in 0.52s\n",
+          "stderr": "",
+          "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/trusted_candidate/junit.xml",
+          "junit_sha256": "ed9092ceb1165cc2b0d2c68d0ebb84a75fd88015d38265f33bf7d03dc5a8afa4"
+        },
+        "ordinary_candidate": {
+          "available": true,
+          "exit_code": 0,
+          "tests": [
+            {
+              "name": "test_archive_boundary_and_ownership",
+              "classname": "tests.test_archive",
+              "status": "PASS",
+              "seconds": 0.152,
+              "message": ""
+            },
+            {
+              "name": "test_owner_can_read",
+              "classname": "tests.test_functional",
+              "status": "PASS",
+              "seconds": 0.139,
+              "message": ""
+            },
+            {
+              "name": "test_admin_view",
+              "classname": "tests.test_functional",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_registration_login",
+              "classname": "tests.test_functional",
+              "status": "PASS",
+              "seconds": 0.047,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_denied",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.153,
+              "message": ""
+            },
+            {
+              "name": "test_unauthenticated_denied",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_normal_user_not_admin",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_cannot_delete",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.005,
+              "message": ""
+            },
+            {
+              "name": "test_reject_non_pdf",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_sql_login_payload",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            }
+          ],
+          "passed": 10,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration_ms": 981.38,
+          "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+          "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+          "stdout": "..........                                                               [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n10 passed, 1 warning in 0.53s\n",
+          "stderr": "",
+          "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/ordinary_candidate/junit.xml",
+          "junit_sha256": "a71c153fc8795461ead5f89c3fed191c9042db5a42dba8e5cd22ab4970fdbcc4"
+        },
+        "trusted_counterfactual": {
+          "available": true,
+          "exit_code": 1,
+          "tests": [
+            {
+              "name": "test_nonowner_denied",
+              "classname": "assurance.test_security",
+              "status": "FAIL",
+              "seconds": 0.169,
+              "message": "case = (<starlette.testclient.TestClient object at 0x7fb4369fa7e0>, {'Authorization': 'Bearer gy46iqEIxUp6D1jNIeA5wdocCX4v3WL...Nzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'}, {'Authorization': 'Bearer clmJPG41IeJ6GybBRbwAwVkgPIUezimYP-4My8OgK-c'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\nassurance/test_security.py:5: AssertionError"
+            },
+            {
+              "name": "test_unauthenticated_denied",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_normal_user_not_admin",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_cannot_delete",
+              "classname": "assurance.test_security",
+              "status": "FAIL",
+              "seconds": 0.004,
+              "message": "case = (<starlette.testclient.TestClient object at 0x7fb4369fa7e0>, {'Authorization': 'Bearer gy46iqEIxUp6D1jNIeA5wdocCX4v3WL...Nzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'}, {'Authorization': 'Bearer clmJPG41IeJ6GybBRbwAwVkgPIUezimYP-4My8OgK-c'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer wnrNzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7fb4369fa7e0>.delete\n\nassurance/test_security.py:18: AssertionError"
+            },
+            {
+              "name": "test_reject_non_pdf",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.006,
+              "message": ""
+            },
+            {
+              "name": "test_sql_login_payload",
+              "classname": "assurance.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            }
+          ],
+          "passed": 4,
+          "failed": 2,
+          "errors": 0,
+          "skipped": 0,
+          "duration_ms": 729.72,
+          "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+          "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+          "stdout": "F..F..                                                                   [100%]\n=================================== FAILURES ===================================\n_____________________________ test_nonowner_denied _____________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7fb4369fa7e0>, {'Authorization': 'Bearer gy46iqEIxUp6D1jNIeA5wdocCX4v3WL...Nzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'}, {'Authorization': 'Bearer clmJPG41IeJ6GybBRbwAwVkgPIUezimYP-4My8OgK-c'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\nassurance/test_security.py:5: AssertionError\n_________________________ test_nonowner_cannot_delete __________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7fb4369fa7e0>, {'Authorization': 'Bearer gy46iqEIxUp6D1jNIeA5wdocCX4v3WL...Nzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'}, {'Authorization': 'Bearer clmJPG41IeJ6GybBRbwAwVkgPIUezimYP-4My8OgK-c'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer wnrNzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7fb4369fa7e0>.delete\n\nassurance/test_security.py:18: AssertionError\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED assurance/test_security.py::test_nonowner_denied - assert 200 == 403\nFAILED assurance/test_security.py::test_nonowner_cannot_delete - AssertionErr...\n2 failed, 4 passed, 1 warning in 0.22s\n",
+          "stderr": "",
+          "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/trusted_counterfactual/junit.xml",
+          "junit_sha256": "c2ab7d52ab1421d8f76fefcd4de394ea4467f590f34026b6492efbf81010dc9b"
+        },
+        "baseline_oracle_mutant": {
+          "available": true,
+          "exit_code": 1,
+          "tests": [
+            {
+              "name": "test_nonowner_denied",
+              "classname": "tests.test_security",
+              "status": "FAIL",
+              "seconds": 0.163,
+              "message": "case = (<starlette.testclient.TestClient object at 0x7f724d5f2600>, {'Authorization': 'Bearer HIx3CRFO-KQOW255u7ybPFDug_GRjll...mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'}, {'Authorization': 'Bearer Shjhf_JiTpvYAGYDoLS4KJzcY6Q4pZjb-6jYeJE46R0'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests/test_security.py:5: AssertionError"
+            },
+            {
+              "name": "test_unauthenticated_denied",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_normal_user_not_admin",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.004,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_cannot_delete",
+              "classname": "tests.test_security",
+              "status": "FAIL",
+              "seconds": 0.004,
+              "message": "case = (<starlette.testclient.TestClient object at 0x7f724d5f2600>, {'Authorization': 'Bearer HIx3CRFO-KQOW255u7ybPFDug_GRjll...mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'}, {'Authorization': 'Bearer Shjhf_JiTpvYAGYDoLS4KJzcY6Q4pZjb-6jYeJE46R0'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer Mw-mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7f724d5f2600>.delete\n\ntests/test_security.py:18: AssertionError"
+            },
+            {
+              "name": "test_reject_non_pdf",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.004,
+              "message": ""
+            },
+            {
+              "name": "test_sql_login_payload",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            }
+          ],
+          "passed": 4,
+          "failed": 2,
+          "errors": 0,
+          "skipped": 0,
+          "duration_ms": 718.42,
+          "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+          "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+          "stdout": "F..F..                                                                   [100%]\n=================================== FAILURES ===================================\n_____________________________ test_nonowner_denied _____________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7f724d5f2600>, {'Authorization': 'Bearer HIx3CRFO-KQOW255u7ybPFDug_GRjll...mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'}, {'Authorization': 'Bearer Shjhf_JiTpvYAGYDoLS4KJzcY6Q4pZjb-6jYeJE46R0'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests/test_security.py:5: AssertionError\n_________________________ test_nonowner_cannot_delete __________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7f724d5f2600>, {'Authorization': 'Bearer HIx3CRFO-KQOW255u7ybPFDug_GRjll...mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'}, {'Authorization': 'Bearer Shjhf_JiTpvYAGYDoLS4KJzcY6Q4pZjb-6jYeJE46R0'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer Mw-mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7f724d5f2600>.delete\n\ntests/test_security.py:18: AssertionError\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED tests/test_security.py::test_nonowner_denied - assert 200 == 403\nFAILED tests/test_security.py::test_nonowner_cannot_delete - AssertionError: ...\n2 failed, 4 passed, 1 warning in 0.21s\n",
+          "stderr": "",
+          "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/baseline_oracle_mutant/junit.xml",
+          "junit_sha256": "3b349d36063196106556580b8969497c569ba63cc39d949c0c1ee64d219eb4b6"
+        },
+        "test_on_secure_baseline": {
+          "available": true,
+          "exit_code": 0,
+          "tests": [
+            {
+              "name": "test_nonowner_denied",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.171,
+              "message": ""
+            },
+            {
+              "name": "test_unauthenticated_denied",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_normal_user_not_admin",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_cannot_delete",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.006,
+              "message": ""
+            },
+            {
+              "name": "test_reject_non_pdf",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.004,
+              "message": ""
+            },
+            {
+              "name": "test_sql_login_payload",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            }
+          ],
+          "passed": 6,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration_ms": 794.28,
+          "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+          "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+          "stdout": "......                                                                   [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n6 passed, 1 warning in 0.21s\n",
+          "stderr": "",
+          "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/test_on_secure_baseline/junit.xml",
+          "junit_sha256": "db835acb5fe48da3eb11fcd3716a063a073c8781e6c99dca576d9a8dcb474c4f"
+        },
+        "test_on_counterfactual": {
+          "available": true,
+          "exit_code": 1,
+          "tests": [
+            {
+              "name": "test_nonowner_denied",
+              "classname": "tests.test_security",
+              "status": "FAIL",
+              "seconds": 0.153,
+              "message": "case = (<starlette.testclient.TestClient object at 0x7f679b7daa50>, {'Authorization': 'Bearer AdBXkufqA-cuBOShqMARvw3YCTo1-iH...2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'}, {'Authorization': 'Bearer 2MTlOJ17U-nIpn92-RdHXXbFO_zY68a7XTcimDE9Q9U'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests/test_security.py:5: AssertionError"
+            },
+            {
+              "name": "test_unauthenticated_denied",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_normal_user_not_admin",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_cannot_delete",
+              "classname": "tests.test_security",
+              "status": "FAIL",
+              "seconds": 0.003,
+              "message": "case = (<starlette.testclient.TestClient object at 0x7f679b7daa50>, {'Authorization': 'Bearer AdBXkufqA-cuBOShqMARvw3YCTo1-iH...2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'}, {'Authorization': 'Bearer 2MTlOJ17U-nIpn92-RdHXXbFO_zY68a7XTcimDE9Q9U'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer Wgj2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7f679b7daa50>.delete\n\ntests/test_security.py:18: AssertionError"
+            },
+            {
+              "name": "test_reject_non_pdf",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.004,
+              "message": ""
+            },
+            {
+              "name": "test_sql_login_payload",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            }
+          ],
+          "passed": 4,
+          "failed": 2,
+          "errors": 0,
+          "skipped": 0,
+          "duration_ms": 714.57,
+          "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+          "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+          "stdout": "F..F..                                                                   [100%]\n=================================== FAILURES ===================================\n_____________________________ test_nonowner_denied _____________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7f679b7daa50>, {'Authorization': 'Bearer AdBXkufqA-cuBOShqMARvw3YCTo1-iH...2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'}, {'Authorization': 'Bearer 2MTlOJ17U-nIpn92-RdHXXbFO_zY68a7XTcimDE9Q9U'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests/test_security.py:5: AssertionError\n_________________________ test_nonowner_cannot_delete __________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7f679b7daa50>, {'Authorization': 'Bearer AdBXkufqA-cuBOShqMARvw3YCTo1-iH...2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'}, {'Authorization': 'Bearer 2MTlOJ17U-nIpn92-RdHXXbFO_zY68a7XTcimDE9Q9U'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer Wgj2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7f679b7daa50>.delete\n\ntests/test_security.py:18: AssertionError\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED tests/test_security.py::test_nonowner_denied - assert 200 == 403\nFAILED tests/test_security.py::test_nonowner_cannot_delete - AssertionError: ...\n2 failed, 4 passed, 1 warning in 0.20s\n",
+          "stderr": "",
+          "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/test_on_counterfactual/junit.xml",
+          "junit_sha256": "8442b09b87fc28052a3c511ad250eb57e39407432c3e1e7447d3a330f8c9089f"
+        },
+        "test_baseline_repeat": {
+          "available": true,
+          "exit_code": 0,
+          "tests": [
+            {
+              "name": "test_nonowner_denied",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.156,
+              "message": ""
+            },
+            {
+              "name": "test_unauthenticated_denied",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.003,
+              "message": ""
+            },
+            {
+              "name": "test_normal_user_not_admin",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            },
+            {
+              "name": "test_nonowner_cannot_delete",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.006,
+              "message": ""
+            },
+            {
+              "name": "test_reject_non_pdf",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.005,
+              "message": ""
+            },
+            {
+              "name": "test_sql_login_payload",
+              "classname": "tests.test_security",
+              "status": "PASS",
+              "seconds": 0.002,
+              "message": ""
+            }
+          ],
+          "passed": 6,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration_ms": 635.0,
+          "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+          "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+          "stdout": "......                                                                   [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n6 passed, 1 warning in 0.19s\n",
+          "stderr": "",
+          "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/test_baseline_repeat/junit.xml",
+          "junit_sha256": "d08d012f3a73336b4fc8baae4de0a6cabee9b8d297e6a6d296dd8aaf95edc636"
+        }
+      },
+      "findings": [],
+      "reason": "Independent contract tests pass and the security oracle discriminates a valid counterfactual",
+      "knowledge": {
+        "threat_repo_version": "TR-2026.09.26.001",
+        "digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+        "module_digest": "7cc9d41b731f4be959a93d82ac194f66b6015b3aef8df98b4a45b29d6bff5686",
+        "rules": [
+          {
+            "id": "AUTHN.001",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "HTTP 401 without token",
+            "severity": "HIGH"
+          },
+          {
+            "id": "AUTHZ.ADMIN.001",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "HTTP 403 for normal user",
+            "severity": "HIGH"
+          },
+          {
+            "id": "AUTHZ.IDOR.001",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "HTTP 403 and no state change",
+            "severity": "HIGH"
+          },
+          {
+            "id": "INPUT.PDF.001",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "Reject non-PDF content",
+            "severity": "HIGH"
+          },
+          {
+            "id": "SATRA-CMD",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+            "severity": "HIGH"
+          },
+          {
+            "id": "SATRA-CSRF",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+            "severity": "HIGH"
+          },
+          {
+            "id": "SATRA-DESER",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+            "severity": "HIGH"
+          },
+          {
+            "id": "SATRA-PATH",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+            "severity": "HIGH"
+          },
+          {
+            "id": "SATRA-SQL",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+            "severity": "HIGH"
+          },
+          {
+            "id": "SATRA-SSRF",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+            "severity": "HIGH"
+          },
+          {
+            "id": "SATRA-XSS",
+            "version": 1,
+            "source_id": "SRC-OWASP",
+            "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+            "severity": "HIGH"
+          }
+        ],
+        "sources": [
+          {
+            "id": "SRC-OWASP",
+            "category": "sources",
+            "name": "OWASP secure coding with AI guidance",
+            "severity": "INFO",
+            "description": "Independent security tests and validation of generated work.",
+            "source_id": "SRC-OWASP",
+            "enabled": true,
+            "version": 1,
+            "updated_at": "2026-09-26T00:00:00+00:00",
+            "data": {
+              "source_type": "public tool",
+              "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Coding_with_AI_Cheat_Sheet.html",
+              "trust_class": "public guidance",
+              "license_note": "Original ASENT test templates; OWASP source cited",
+              "retrieved_at": "2026-09-26T00:00:00+00:00"
+            }
+          }
+        ],
+        "role": "Supporting reusable knowledge, combined with observed evidence and independent project obligations"
+      }
+    },
+    "created_at": "2026-09-26T15:12:58.237452+00:00",
+    "duration_ms": 7131.33,
+    "reused_from": null
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "checked_at": "2026-09-26T15:12:34.988452+00:00",
+  "checks": {
+    "backend_start": true,
+    "frontend_served": true,
+    "sqlite_initialized": true,
+    "versioned_threat_records": 49,
+    "pdf_srs_intake": true,
+    "text_srs_intake": true,
+    "cache_hit": true,
+    "sse_stream": true,
+    "threat_update_revokes_accept": true,
+    "selective_invalidation": true,
+    "fresh_reverification": true,
+    "assurance_download": true,
+    "experiments_persisted": true,
+    "invoice_pdf_upload": true,
+    "cli_report": true
+  },
+  "runs": {
+    "safe": {
+      "run_id": "fdd6ec17adc9",
+      "decision": "ACCEPT",
+      "lifecycle": "COMPLETE",
+      "modules": {
+        "SABLE": "PRESERVED",
+        "CAVR": "VERIFIED",
+        "SATRA": "ACCEPT"
+      },
+      "clean_commit": "b792f3172e11cd04824f53082b76b702bf5f04dc",
+      "candidate_snapshot": "a392e997af7bfb0fbc89244c3aa6f6ecdf6a541f132cfd46e1c3c3da0b4f534e",
+      "error": null
+    },
+    "block": {
+      "run_id": "7a30374d53e3",
+      "decision": "BLOCK",
+      "lifecycle": "COMPLETE",
+      "modules": {
+        "SABLE": "PRESERVED",
+        "CAVR": "VERIFIED",
+        "SATRA": "REJECT"
+      },
+      "clean_commit": null,
+      "candidate_snapshot": "2b7d5257bab038584a83518bf010192e53df8a7313243e80694a29a01bdfb825",
+      "error": null
+    },
+    "review": {
+      "run_id": "71edccfa7432",
+      "decision": "REVIEW",
+      "lifecycle": "COMPLETE",
+      "modules": {
+        "SABLE": "UNKNOWN",
+        "CAVR": "VERIFIED",
+        "SATRA": "ACCEPT"
+      },
+      "clean_commit": null,
+      "candidate_snapshot": "08332133447e725ac355297e8de76faeb66d4255790019ce827cca225e87ef73",
+      "error": null
+    },
+    "knowledge-reverified": {
+      "run_id": "fdd6ec17adc9",
+      "decision": "ACCEPT",
+      "lifecycle": "COMPLETE",
+      "modules": {
+        "SABLE": "PRESERVED",
+        "SATRA": "ACCEPT",
+        "CAVR": "VERIFIED"
+      },
+      "clean_commit": "d1ad15908758b7a53a7269da50ef8484e100a39e",
+      "candidate_snapshot": "a392e997af7bfb0fbc89244c3aa6f6ecdf6a541f132cfd46e1c3c3da0b4f534e",
+      "error": null
+    }
+  },
+  "external_tools": {
+    "git": {
+      "available": true,
+      "path": "/usr/local/bin/git"
+    },
+    "strace": {
+      "available": false,
+      "path": "/usr/bin/strace",
+      "installed": true,
+      "reason": "/usr/bin/strace: test_ptrace_get_syscall_info: PTRACE_TRACEME: Operation not permitted\n/usr/bin/strace: ptrace(PTRACE_TRACEME, ...): Operation not permitted\n/usr/bin/strace: PTRACE_SETOPTIONS: Operation not permitted\n/usr/bin/strace: cleanup: waitpid(-1, __WALL): No child processes\n"
+    },
+    "docker": {
+      "available": false,
+      "path": null
+    },
+    "podman": {
+      "available": false,
+      "path": null
+    },
+    "terraform": {
+      "available": false,
+      "path": null
+    },
+    "checkov": {
+      "available": false,
+      "path": null
+    },
+    "bandit": {
+      "available": false,
+      "path": null
+    },
+    "semgrep": {
+      "available": false,
+      "path": null
+    },
+    "ollama": {
+      "available": false,
+      "path": null
+    },
+    "bpftrace": {
+      "available": false,
+      "path": null
+    }
+  },
+  "all_checks_passed": true,
+  "capabilities_rechecked_at": "2026-09-26T15:17:36.601076+00:00"
+}

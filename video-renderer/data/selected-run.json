@@ -1,0 +1,84 @@
+{
+  "run": {
+    "id": "c6f6239d62b4",
+    "finalDecision": "REVIEW",
+    "reasons": [
+      "SATRA: INCONCLUSIVE"
+    ],
+    "applicable": [
+      "CAVR",
+      "SATRA",
+      "SABLE"
+    ]
+  },
+  "evidenceTimestamp": "2026-09-26T18:00:32.760284+00:00",
+  "modules": {
+    "CAVR": {
+      "status": "VERIFIED",
+      "stale": false,
+      "integrityValid": true,
+      "evidenceId": "6915f2237d6b4436bbbce4ab5e622846"
+    },
+    "SATRA": {
+      "status": "INCONCLUSIVE",
+      "stale": false,
+      "integrityValid": true,
+      "evidenceId": "e2c1e1abc46f4507a8394c3435db448b"
+    },
+    "SABLE": {
+      "status": "PRESERVED",
+      "stale": false,
+      "integrityValid": true,
+      "evidenceId": "ae39f8ae1bca41068db39b1e82b2fff5"
+    }
+  },
+  "cavr": {
+    "packageName": "pypdf",
+    "version": "6.19.0",
+    "sha256": "7e5d6e730e7dae87d560a2cee218b852f6498c8be61966f3cd02ead971e48d14",
+    "artifact": "artifacts/pypdf-6.19.0-py3-none-any.whl",
+    "ecosystem": "PyPI",
+    "violations": 0,
+    "required": [
+      "FILE_READ",
+      "FILE_WRITE"
+    ],
+    "denied": [
+      "EXECUTE_BINARY",
+      "NETWORK_CONNECT",
+      "PERSISTENCE_WRITE",
+      "PROCESS_CREATE",
+      "SECRET_ACCESS"
+    ]
+  },
+  "satra": {
+    "route": "GET /invoices/{invoice_id}",
+    "subject": "authenticated normal user",
+    "expectedStatus": 403,
+    "dockerExit": 125,
+    "dockerBackend": "docker",
+    "ollamaAvailable": false,
+    "oracleDiagnosis": "INCONCLUSIVE",
+    "oracleReason": "Counterfactual not independently shown to violate the contract",
+    "ruleId": "AUTHZ.IDOR.001",
+    "action": "GET invoice",
+    "counterfactual": "bypass can_access_invoice ownership guard",
+    "mutantOperator": "AST replace can_access_invoice body with return True"
+  },
+  "sable": {
+    "successor": "aws_s3_bucket.invoice_data",
+    "correspondenceReason": "Unique supported successor; resource-name similarity is not used",
+    "optionalTools": [
+      {
+        "available": false,
+        "tool": "terraform",
+        "reason": "Optional backend unavailable"
+      },
+      {
+        "available": false,
+        "tool": "checkov",
+        "reason": "Optional backend unavailable"
+      }
+    ]
+  }
+}

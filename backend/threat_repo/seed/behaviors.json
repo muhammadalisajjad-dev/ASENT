@@ -1,0 +1,177 @@
+{
+  "records": [
+    {
+      "id": "BEH-SECRET_READ",
+      "category": "behaviors",
+      "name": "SECRET_READ",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "SECRET_READ",
+        "python_sinks": [],
+        "runtime_event": "SECRET_ACCESS"
+      }
+    },
+    {
+      "id": "BEH-SENSITIVE_FILE_READ",
+      "category": "behaviors",
+      "name": "SENSITIVE_FILE_READ",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "SENSITIVE_FILE_READ",
+        "python_sinks": [],
+        "runtime_event": "SENSITIVE_FILE_READ"
+      }
+    },
+    {
+      "id": "BEH-FILE_READ",
+      "category": "behaviors",
+      "name": "FILE_READ",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "LOW",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "FILE_READ",
+        "python_sinks": [],
+        "runtime_event": "FILE_READ"
+      }
+    },
+    {
+      "id": "BEH-FILE_WRITE",
+      "category": "behaviors",
+      "name": "FILE_WRITE",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "MEDIUM",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "FILE_WRITE",
+        "python_sinks": [],
+        "runtime_event": "FILE_WRITE"
+      }
+    },
+    {
+      "id": "BEH-NETWORK_CONNECT",
+      "category": "behaviors",
+      "name": "NETWORK_CONNECT",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "MEDIUM",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "NETWORK_CONNECT",
+        "python_sinks": [
+          "socket.create_connection",
+          "socket.connect",
+          "requests.post",
+          "requests.get",
+          "urllib.request.urlopen"
+        ],
+        "runtime_event": "NETWORK_CONNECT"
+      }
+    },
+    {
+      "id": "BEH-PROCESS_EXEC",
+      "category": "behaviors",
+      "name": "PROCESS_EXEC",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "PROCESS_EXEC",
+        "python_sinks": [
+          "subprocess.run",
+          "subprocess.Popen",
+          "os.system"
+        ],
+        "runtime_event": "PROCESS_CREATE"
+      }
+    },
+    {
+      "id": "BEH-NATIVE_EXEC",
+      "category": "behaviors",
+      "name": "NATIVE_EXEC",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "NATIVE_EXEC",
+        "python_sinks": [],
+        "runtime_event": "NATIVE_EXEC"
+      }
+    },
+    {
+      "id": "BEH-PERSISTENCE_WRITE",
+      "category": "behaviors",
+      "name": "PERSISTENCE_WRITE",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "PERSISTENCE_WRITE",
+        "python_sinks": [],
+        "runtime_event": "PERSISTENCE_WRITE"
+      }
+    },
+    {
+      "id": "BEH-DYNAMIC_DOWNLOAD",
+      "category": "behaviors",
+      "name": "DYNAMIC_DOWNLOAD",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "DYNAMIC_DOWNLOAD",
+        "python_sinks": [],
+        "runtime_event": "DYNAMIC_DOWNLOAD"
+      }
+    },
+    {
+      "id": "BEH-DYNAMIC_EXECUTION",
+      "category": "behaviors",
+      "name": "DYNAMIC_EXECUTION",
+      "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "event": "DYNAMIC_EXECUTION",
+        "python_sinks": [
+          "eval",
+          "exec"
+        ],
+        "runtime_event": "NATIVE_EXEC"
+      }
+    }
+  ]
+}

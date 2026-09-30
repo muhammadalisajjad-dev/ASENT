@@ -1,0 +1,38 @@
+F..F..                                                                   [100%]
+=================================== FAILURES ===================================
+_____________________________ test_nonowner_denied _____________________________
+
+case = (<starlette.testclient.TestClient object at 0x7f236ebf6630>, {'Authorization': 'Bearer ohrsu0zgBe4QeKkR51DyG4sCYhQt5tl...bCXwwLLp_VA5dTxXpyiGHpdPHdXB1PQ3hqiCpU0U'}, {'Authorization': 'Bearer 7GswUCjwghhUAw-9B7I56_U5Ed0kfHc9QxZ88pcXSfg'}, 1)
+
+    def test_nonowner_denied(case):
+        c,a,b,admin,i=case
+        before=c.get('/invoices',headers=a).json()
+        response=c.get(f'/invoices/{i}',headers=b)
+>       assert response.status_code==403
+E       assert 200 == 403
+E        +  where 200 = <Response [200 OK]>.status_code
+
+tests/test_security.py:5: AssertionError
+_________________________ test_nonowner_cannot_delete __________________________
+
+case = (<starlette.testclient.TestClient object at 0x7f236ebf6630>, {'Authorization': 'Bearer ohrsu0zgBe4QeKkR51DyG4sCYhQt5tl...bCXwwLLp_VA5dTxXpyiGHpdPHdXB1PQ3hqiCpU0U'}, {'Authorization': 'Bearer 7GswUCjwghhUAw-9B7I56_U5Ed0kfHc9QxZ88pcXSfg'}, 1)
+
+    def test_nonowner_cannot_delete(case):
+        c,a,b,admin,i=case
+>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403
+E       AssertionError: assert 200 == 403
+E        +  where 200 = <Response [200 OK]>.status_code
+E        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer XywbCXwwLLp_VA5dTxXpyiGHpdPHdXB1PQ3hqiCpU0U'})
+E        +      where delete = <starlette.testclient.TestClient object at 0x7f236ebf6630>.delete
+
+tests/test_security.py:18: AssertionError
+=============================== warnings summary ===============================
+../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_security.py::test_nonowner_denied - assert 200 == 403
+FAILED tests/test_security.py::test_nonowner_cannot_delete - AssertionError: ...
+2 failed, 4 passed, 1 warning in 0.22s

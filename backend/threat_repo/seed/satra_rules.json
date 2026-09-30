@@ -1,0 +1,402 @@
+{
+  "records": [
+    {
+      "id": "AUTHZ.IDOR.001",
+      "category": "satra_rules",
+      "name": "authorization / object ownership",
+      "description": "HTTP 403 and no state change",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-639",
+        "family": "authorization / object ownership",
+        "applicability": [
+          "FastAPI",
+          "InvoiceHub"
+        ],
+        "preconditions": [
+          "object ID from request",
+          "authenticated user",
+          "invoice ownership"
+        ],
+        "expected_secure_behavior": "HTTP 403 and no state change",
+        "pytest_template": "trusted_security.py::test_nonowner_denied",
+        "input_classes": [
+          "owner",
+          "nonowner",
+          "unauthenticated",
+          "administrator"
+        ],
+        "counterfactual_template": "bypass can_access_invoice",
+        "validation_rules": [
+          "parses",
+          "secure baseline passes",
+          "valid mutant killed by assertion",
+          "repeatable",
+          "local",
+          "bounded runtime"
+        ],
+        "version": 1,
+        "implementation": "executable bounded InvoiceHub template"
+      }
+    },
+    {
+      "id": "AUTHN.001",
+      "category": "satra_rules",
+      "name": "authentication",
+      "description": "HTTP 401 without token",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-306",
+        "family": "authentication",
+        "applicability": [
+          "FastAPI",
+          "InvoiceHub"
+        ],
+        "preconditions": [
+          "private invoice route"
+        ],
+        "expected_secure_behavior": "HTTP 401 without token",
+        "pytest_template": "trusted_security.py::test_unauthenticated_denied",
+        "input_classes": [
+          "missing bearer token"
+        ],
+        "counterfactual_template": null,
+        "validation_rules": [
+          "parses",
+          "baseline passes",
+          "local"
+        ],
+        "version": 1,
+        "implementation": "executable bounded InvoiceHub template"
+      }
+    },
+    {
+      "id": "AUTHZ.ADMIN.001",
+      "category": "satra_rules",
+      "name": "privilege separation",
+      "description": "HTTP 403 for normal user",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-862",
+        "family": "privilege separation",
+        "applicability": [
+          "FastAPI",
+          "InvoiceHub"
+        ],
+        "preconditions": [
+          "administrator route"
+        ],
+        "expected_secure_behavior": "HTTP 403 for normal user",
+        "pytest_template": "trusted_security.py::test_normal_user_not_admin",
+        "input_classes": [
+          "normal user",
+          "admin"
+        ],
+        "counterfactual_template": null,
+        "validation_rules": [
+          "baseline passes",
+          "local"
+        ],
+        "version": 1,
+        "implementation": "executable bounded InvoiceHub template"
+      }
+    },
+    {
+      "id": "INPUT.PDF.001",
+      "category": "satra_rules",
+      "name": "unsafe upload",
+      "description": "Reject non-PDF content",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-434",
+        "family": "unsafe upload",
+        "applicability": [
+          "FastAPI",
+          "InvoiceHub"
+        ],
+        "preconditions": [
+          "PDF upload route"
+        ],
+        "expected_secure_behavior": "Reject non-PDF content",
+        "pytest_template": "trusted_security.py::test_reject_non_pdf",
+        "input_classes": [
+          "text masquerading as PDF"
+        ],
+        "counterfactual_template": null,
+        "validation_rules": [
+          "baseline passes"
+        ],
+        "version": 1,
+        "implementation": "executable bounded InvoiceHub template"
+      }
+    },
+    {
+      "id": "SATRA-SQL",
+      "category": "satra_rules",
+      "name": "SQL injection",
+      "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-89",
+        "family": "SQL injection",
+        "detection_hints": [
+          "unparameterized query construction"
+        ],
+        "applicability": [
+          "Python web application"
+        ],
+        "pytest_template": null,
+        "counterfactual_template": null,
+        "weak_test_indicators": [
+          "no negative case",
+          "assertion removed",
+          "unconditional auth mock"
+        ],
+        "validation_rules": [
+          "parses",
+          "secure baseline passes",
+          "valid counterfactual killed",
+          "stable",
+          "local"
+        ],
+        "implementation": "knowledge only; no universal dynamic template"
+      }
+    },
+    {
+      "id": "SATRA-CMD",
+      "category": "satra_rules",
+      "name": "Command injection",
+      "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-78",
+        "family": "Command injection",
+        "detection_hints": [
+          "user input reaches shell"
+        ],
+        "applicability": [
+          "Python web application"
+        ],
+        "pytest_template": null,
+        "counterfactual_template": null,
+        "weak_test_indicators": [
+          "no negative case",
+          "assertion removed",
+          "unconditional auth mock"
+        ],
+        "validation_rules": [
+          "parses",
+          "secure baseline passes",
+          "valid counterfactual killed",
+          "stable",
+          "local"
+        ],
+        "implementation": "knowledge only; no universal dynamic template"
+      }
+    },
+    {
+      "id": "SATRA-PATH",
+      "category": "satra_rules",
+      "name": "Path traversal",
+      "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-22",
+        "family": "Path traversal",
+        "detection_hints": [
+          "missing path containment"
+        ],
+        "applicability": [
+          "Python web application"
+        ],
+        "pytest_template": null,
+        "counterfactual_template": null,
+        "weak_test_indicators": [
+          "no negative case",
+          "assertion removed",
+          "unconditional auth mock"
+        ],
+        "validation_rules": [
+          "parses",
+          "secure baseline passes",
+          "valid counterfactual killed",
+          "stable",
+          "local"
+        ],
+        "implementation": "knowledge only; no universal dynamic template"
+      }
+    },
+    {
+      "id": "SATRA-XSS",
+      "category": "satra_rules",
+      "name": "XSS",
+      "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-79",
+        "family": "XSS",
+        "detection_hints": [
+          "unescaped user content to HTML"
+        ],
+        "applicability": [
+          "Python web application"
+        ],
+        "pytest_template": null,
+        "counterfactual_template": null,
+        "weak_test_indicators": [
+          "no negative case",
+          "assertion removed",
+          "unconditional auth mock"
+        ],
+        "validation_rules": [
+          "parses",
+          "secure baseline passes",
+          "valid counterfactual killed",
+          "stable",
+          "local"
+        ],
+        "implementation": "knowledge only; no universal dynamic template"
+      }
+    },
+    {
+      "id": "SATRA-SSRF",
+      "category": "satra_rules",
+      "name": "SSRF",
+      "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-918",
+        "family": "SSRF",
+        "detection_hints": [
+          "user URL reaches unrestricted HTTP client"
+        ],
+        "applicability": [
+          "Python web application"
+        ],
+        "pytest_template": null,
+        "counterfactual_template": null,
+        "weak_test_indicators": [
+          "no negative case",
+          "assertion removed",
+          "unconditional auth mock"
+        ],
+        "validation_rules": [
+          "parses",
+          "secure baseline passes",
+          "valid counterfactual killed",
+          "stable",
+          "local"
+        ],
+        "implementation": "knowledge only; no universal dynamic template"
+      }
+    },
+    {
+      "id": "SATRA-CSRF",
+      "category": "satra_rules",
+      "name": "CSRF",
+      "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-352",
+        "family": "CSRF",
+        "detection_hints": [
+          "ambient cookie authentication on state-changing routes"
+        ],
+        "applicability": [
+          "Python web application"
+        ],
+        "pytest_template": null,
+        "counterfactual_template": null,
+        "weak_test_indicators": [
+          "no negative case",
+          "assertion removed",
+          "unconditional auth mock"
+        ],
+        "validation_rules": [
+          "parses",
+          "secure baseline passes",
+          "valid counterfactual killed",
+          "stable",
+          "local"
+        ],
+        "implementation": "knowledge only; no universal dynamic template"
+      }
+    },
+    {
+      "id": "SATRA-DESER",
+      "category": "satra_rules",
+      "name": "Insecure deserialization",
+      "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+      "severity": "HIGH",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "cwe": "CWE-502",
+        "family": "Insecure deserialization",
+        "detection_hints": [
+          "untrusted pickle/yaml object construction"
+        ],
+        "applicability": [
+          "Python web application"
+        ],
+        "pytest_template": null,
+        "counterfactual_template": null,
+        "weak_test_indicators": [
+          "no negative case",
+          "assertion removed",
+          "unconditional auth mock"
+        ],
+        "validation_rules": [
+          "parses",
+          "secure baseline passes",
+          "valid counterfactual killed",
+          "stable",
+          "local"
+        ],
+        "implementation": "knowledge only; no universal dynamic template"
+      }
+    }
+  ]
+}

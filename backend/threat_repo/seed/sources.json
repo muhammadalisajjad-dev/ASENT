@@ -1,0 +1,112 @@
+{
+  "records": [
+    {
+      "id": "SRC-ASENT",
+      "category": "sources",
+      "name": "ASENT curated program-analysis knowledge",
+      "description": "Bounded patterns and policies from the supplied project designs. Research hypotheses, not validated prevalence claims.",
+      "severity": "INFO",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_type": "ASENT curated rule",
+        "reference": "docs/implementation-notes.md",
+        "trust_class": "curated",
+        "license_note": "Project-authored knowledge; inspect and evaluate",
+        "retrieved_at": "2026-09-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "SRC-LAB",
+      "category": "sources",
+      "name": "InvoiceHub controlled reproduction",
+      "description": "Only synthetic conditions and fake canary bytes; not evidence of an observed malicious package selection.",
+      "severity": "INFO",
+      "source_id": "SRC-LAB",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_type": "controlled reproduction",
+        "reference": "scenarios/cavr_controlled/invoice_pdf_lab.py",
+        "trust_class": "controlled",
+        "license_note": "Project-authored inert fixture",
+        "retrieved_at": "2026-09-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "SRC-OSV",
+      "category": "sources",
+      "name": "OSV public vulnerability data",
+      "description": "Imported responses retain query, source URL, retrieval date and digest.",
+      "severity": "INFO",
+      "source_id": "SRC-OSV",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_type": "OSV",
+        "reference": "https://google.github.io/osv.dev/api/",
+        "trust_class": "public advisory",
+        "license_note": "Advisories retain upstream source/license; attribution preserved",
+        "retrieved_at": "2026-09-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "SRC-AWS",
+      "category": "sources",
+      "name": "AWS S3 least privilege guidance",
+      "description": "Principal, action and resource relationships motivate the bounded model.",
+      "severity": "INFO",
+      "source_id": "SRC-AWS",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_type": "official advisory",
+        "reference": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html",
+        "trust_class": "official documentation",
+        "license_note": "Paraphrased rule; no documentation text redistributed",
+        "retrieved_at": "2026-09-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "SRC-TERRAFORM",
+      "category": "sources",
+      "name": "Terraform refactoring documentation",
+      "description": "Explicit moved blocks are one correspondence signal.",
+      "severity": "INFO",
+      "source_id": "SRC-TERRAFORM",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_type": "public tool",
+        "reference": "https://developer.hashicorp.com/terraform/language/modules/develop/refactoring",
+        "trust_class": "official documentation",
+        "license_note": "Paraphrased semantics",
+        "retrieved_at": "2026-09-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "SRC-OWASP",
+      "category": "sources",
+      "name": "OWASP secure coding with AI guidance",
+      "description": "Independent security tests and validation of generated work.",
+      "severity": "INFO",
+      "source_id": "SRC-OWASP",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "source_type": "public tool",
+        "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Coding_with_AI_Cheat_Sheet.html",
+        "trust_class": "public guidance",
+        "license_note": "Original ASENT test templates; OWASP source cited",
+        "retrieved_at": "2026-09-26T00:00:00+00:00"
+      }
+    }
+  ]
+}

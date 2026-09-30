@@ -1,0 +1,82 @@
+INFO:     Started server process [5]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:56590 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56604 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56604 - "GET /assets/index-BKC6_l0Y.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /assets/index-DlSAq3LM.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/project HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56604 - "GET /api/scenarios HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/capabilities HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56646 - "GET /api/runs/8b4089dfc9a9/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/8b4089dfc9a9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs/8b4089dfc9a9/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56604 - "GET /api/runs/8b4089dfc9a9/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56604 - "GET /api/runs/8b4089dfc9a9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs/8b4089dfc9a9/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "POST /api/intake/document HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56604 - "GET /api/threat-repository/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/threat-repository HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs/8b4089dfc9a9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56604 - "GET /api/runs/8b4089dfc9a9/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56604 - "POST /api/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:56604 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56652 - "GET /api/runs/f43234402d27/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs/f43234402d27/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/runs/f43234402d27/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "POST /invoicehub/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /invoicehub/invoices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "POST /invoicehub/invoices HTTP/1.1" 201 Created
+INFO:     127.0.0.1:56634 - "GET /invoicehub/invoices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/threat-repository HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/threat-repository/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45308 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "POST /api/threat-repository/records/TRIG-ENV/enabled HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/threat-repository/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/threat-repository HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45308 - "GET /api/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/runs/f43234402d27 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/runs/f43234402d27/evidence HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/threat-repository HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/threat-repository/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "POST /api/threat-repository/records/TRIG-ENV/enabled HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56632 - "GET /api/threat-repository/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/threat-repository HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [5]

@@ -1,0 +1,48 @@
+{
+  "records": [
+    {
+      "id": "SABLE-S3IAM-001",
+      "category": "sable_rules",
+      "name": "Role-to-protected-S3 least privilege",
+      "description": "The original action/resource obligation must hold on a uniquely supported successor.",
+      "severity": "HIGH",
+      "source_id": "SRC-AWS",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "principal_action_resource": true,
+        "allowed_actions": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "wrong_binding": true,
+        "privilege_widening": true,
+        "unsupported_semantics": "UNKNOWN"
+      }
+    },
+    {
+      "id": "SABLE-SUCCESSOR-001",
+      "category": "sable_rules",
+      "name": "Unique evidence-supported successor",
+      "description": "Use multiple structural signals and explicit moves; do not use resource-name similarity as proof.",
+      "severity": "HIGH",
+      "source_id": "SRC-TERRAFORM",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "minimum_score": 6,
+        "margin": 3,
+        "signals": [
+          "type",
+          "physical bucket",
+          "Asset tag",
+          "lifecycle role",
+          "application references",
+          "moved blocks"
+        ]
+      }
+    }
+  ]
+}

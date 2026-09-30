@@ -1,0 +1,239 @@
+{
+  "critical_unresolved": 0,
+  "frontend_timer_security_verdicts": false,
+  "matches": [
+    {
+      "file": "backend/cavr/causal_graph.py",
+      "line": 12,
+      "matched_terms": [
+        "fake"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/cavr/lab_harness.py",
+      "line": 11,
+      "matched_terms": [
+        "FAKE"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/cavr/lab_harness.py",
+      "line": 19,
+      "matched_terms": [
+        "settimeout"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/cavr/lab_harness.py",
+      "line": 27,
+      "matched_terms": [
+        "FAKE"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/cavr/lab_harness.py",
+      "line": 28,
+      "matched_terms": [
+        "FAKE"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/cavr/lab_harness.py",
+      "line": 41,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/cavr/lab_harness.py",
+      "line": 50,
+      "matched_terms": [
+        "FAKE"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/cavr/policy.py",
+      "line": 10,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/orchestrator/service.py",
+      "line": 86,
+      "matched_terms": [
+        "todo"
+      ],
+      "classification": "form hint or fixture terminology; inspected against backend wiring"
+    },
+    {
+      "file": "backend/orchestrator/service.py",
+      "line": 95,
+      "matched_terms": [
+        "todo"
+      ],
+      "classification": "form hint or fixture terminology; inspected against backend wiring"
+    },
+    {
+      "file": "backend/orchestrator/service.py",
+      "line": 99,
+      "matched_terms": [
+        "todo"
+      ],
+      "classification": "form hint or fixture terminology; inspected against backend wiring"
+    },
+    {
+      "file": "backend/threat_repo/seed/satra_rules.json",
+      "line": 173,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/threat_repo/seed/satra_rules.json",
+      "line": 209,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/threat_repo/seed/satra_rules.json",
+      "line": 245,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/threat_repo/seed/satra_rules.json",
+      "line": 281,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/threat_repo/seed/satra_rules.json",
+      "line": 317,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/threat_repo/seed/satra_rules.json",
+      "line": 353,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/threat_repo/seed/satra_rules.json",
+      "line": 389,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/threat_repo/seed/sources.json",
+      "line": 25,
+      "matched_terms": [
+        "fake"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "backend/threat_repo/source_sink_rules.py",
+      "line": 13,
+      "matched_terms": [
+        "fake"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "frontend/src/ThreatRepository.tsx",
+      "line": 15,
+      "matched_terms": [
+        "placeholder"
+      ],
+      "classification": "form hint or fixture terminology; inspected against backend wiring"
+    },
+    {
+      "file": "frontend/src/ThreatRepository.tsx",
+      "line": 16,
+      "matched_terms": [
+        "placeholder"
+      ],
+      "classification": "form hint or fixture terminology; inspected against backend wiring"
+    },
+    {
+      "file": "frontend/src/main.tsx",
+      "line": 42,
+      "matched_terms": [
+        "placeholder"
+      ],
+      "classification": "form hint or fixture terminology; inspected against backend wiring"
+    },
+    {
+      "file": "frontend/src/main.tsx",
+      "line": 57,
+      "matched_terms": [
+        "fake",
+        "mock"
+      ],
+      "classification": "form hint or fixture terminology; inspected against backend wiring"
+    },
+    {
+      "file": "frontend/src/main.tsx",
+      "line": 61,
+      "matched_terms": [
+        "placeholder"
+      ],
+      "classification": "form hint or fixture terminology; inspected against backend wiring"
+    },
+    {
+      "file": "scenarios/cavr_controlled/invoice_pdf_lab.py",
+      "line": 12,
+      "matched_terms": [
+        "FAKE"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "scenarios/cavr_controlled/invoice_pdf_lab.py",
+      "line": 16,
+      "matched_terms": [
+        "FAKE"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "scripts/seed_threat_repository.py",
+      "line": 14,
+      "matched_terms": [
+        "fake"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    },
+    {
+      "file": "scripts/seed_threat_repository.py",
+      "line": 32,
+      "matched_terms": [
+        "mock"
+      ],
+      "classification": "inert canary/loopback fixture or explanatory research scope"
+    }
+  ]
+}

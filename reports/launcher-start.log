@@ -1,0 +1,49 @@
+INFO:     Started server process [125]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:35258 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "POST /api/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /api/runs/f12e3286a8c9 HTTP/1.1" 200 OK

@@ -1,0 +1,224 @@
+{
+  "records": [
+    {
+      "id": "TRIG-ENV",
+      "category": "triggers",
+      "name": "environment-variable check",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "environment-variable check",
+        "risk_weight": 10,
+        "match_calls": [
+          "os.getenv",
+          "os.environ.get"
+        ],
+        "activation_supported": true
+      }
+    },
+    {
+      "id": "TRIG-FILE",
+      "category": "triggers",
+      "name": "sensitive-file existence",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "sensitive-file existence",
+        "risk_weight": 10,
+        "match_calls": [
+          ".exists",
+          ".is_file",
+          "os.path.exists"
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-HOST",
+      "category": "triggers",
+      "name": "hostname condition",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "hostname condition",
+        "risk_weight": 7,
+        "match_calls": [
+          "socket.gethostname",
+          "platform.node"
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-USER",
+      "category": "triggers",
+      "name": "username condition",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "username condition",
+        "risk_weight": 7,
+        "match_calls": [
+          "getpass.getuser",
+          "os.getlogin"
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-PLATFORM",
+      "category": "triggers",
+      "name": "OS/platform condition",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "OS/platform condition",
+        "risk_weight": 6,
+        "match_calls": [
+          "platform.system",
+          "platform.platform"
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-TIME",
+      "category": "triggers",
+      "name": "date/time condition",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "date/time condition",
+        "risk_weight": 6,
+        "match_calls": [
+          "time.",
+          "datetime."
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-DELAY",
+      "category": "triggers",
+      "name": "sleep/delay",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "sleep/delay",
+        "risk_weight": 6,
+        "match_calls": [
+          "time.sleep"
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-CLOUD",
+      "category": "triggers",
+      "name": "CI/cloud flag",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "CI/cloud flag",
+        "risk_weight": 9,
+        "match_calls": [
+          "os.getenv",
+          "os.environ.get"
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-METADATA",
+      "category": "triggers",
+      "name": "cloud metadata condition",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "cloud metadata condition",
+        "risk_weight": 10,
+        "match_calls": [
+          "requests.get",
+          "urllib.request.urlopen"
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-SANDBOX",
+      "category": "triggers",
+      "name": "sandbox/container detection",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "sandbox/container detection",
+        "risk_weight": 8,
+        "match_calls": [
+          "os.path.exists",
+          ".exists"
+        ],
+        "activation_supported": false
+      }
+    },
+    {
+      "id": "TRIG-RESPONSE",
+      "category": "triggers",
+      "name": "external-response dependent behavior",
+      "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+      "severity": "HIGH",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "category": "external-response dependent behavior",
+        "risk_weight": 8,
+        "match_calls": [
+          "requests.get",
+          "requests.post"
+        ],
+        "activation_supported": false
+      }
+    }
+  ]
+}

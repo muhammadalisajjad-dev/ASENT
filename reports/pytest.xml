@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="59" time="122.841" timestamp="2026-09-26T13:10:24.209340-04:00" hostname="VM"><testcase classname="tests.test_api_replay" name="test_threat_api_validation_and_export" time="0.211" /><testcase classname="tests.test_api_replay" name="test_real_recorded_replay" time="23.263"><failure message="AssertionError: {'run_id': '0d6db19dcfc7', 'created_at': '2026-09-26T17:10:25.193480+00:00', 'title': 'Recorded controlled oracle edit', 'scenario': 'safe', ...}&#10;assert 'REVIEW' == 'BLOCK'&#10;  &#10;  - BLOCK&#10;  + REVIEW">service = &lt;backend.orchestrator.service.Service object at 0x7f794a993320&gt;
+
+    @pytest.mark.integration
+    def test_real_recorded_replay(service):
+        r,events=prepare(service,ROOT/'scenarios/replay/weak-oracle/bundle.json');execute(service,r,events)
+&gt;       run=service.store.run(r.run_id);assert run.final_decision=='BLOCK',run.model_dump()
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {'run_id': '0d6db19dcfc7', 'created_at': '2026-09-26T17:10:25.193480+00:00', 'title': 'Recorded controlled oracle edit', 'scenario': 'safe', ...}
+E       assert 'REVIEW' == 'BLOCK'
+E         
+E         - BLOCK
+E         + REVIEW
+
+tests/test_api_replay.py:28: AssertionError</failure></testcase><testcase classname="tests.test_api_replay" name="test_research_is_explicit_and_local" time="0.002" /><testcase classname="tests.test_api_replay" name="test_snapshot_rejects_symlinks_and_cache_tampering" time="0.057" /><testcase classname="tests.test_document_intake" name="test_pdf_srs_extraction" time="0.292" /><testcase classname="tests.test_document_intake" name="test_text_srs_and_invoice_pdf" time="0.286" /><testcase classname="tests.test_document_intake" name="test_invalid_document_fails_closed[bad.pdf-notpdf]" time="0.002" /><testcase classname="tests.test_document_intake" name="test_invalid_document_fails_closed[bad.txt-\xff]" time="0.001" /><testcase classname="tests.test_document_intake" name="test_invalid_document_fails_closed[program.py-print(1)]" time="0.001" /><testcase classname="tests.test_document_intake" name="test_invalid_document_fails_closed[empty.md-]" time="0.001" /><testcase classname="tests.test_integration" name="test_safe_accepts_exact_clean_reconstruction" time="75.357"><failure message="AssertionError: {'run_id': '5aaccfaebae8', 'created_at': '2026-09-26T17:10:49.273797+00:00', 'title': 'Normal first build', 'scenario': 'safe', ...}&#10;assert 'REVIEW' == 'ACCEPT'&#10;  &#10;  - ACCEPT&#10;  + REVIEW">integration_runs = (&lt;backend.orchestrator.service.Service object at 0x7f79487e2e10&gt;, {'safe': RunContext(run_id='5aaccfaebae8', created_a...LVED', 'SATRA: INCONCLUSIVE'], lifecycle='COMPLETE', revision=1, clean_commit=None, clean_workspace=None, error=None)})
+
+    def test_safe_accepts_exact_clean_reconstruction(integration_runs):
+&gt;       svc,runs=integration_runs;r=runs['safe'];assert r.final_decision=='ACCEPT',r.model_dump();assert r.clean_commit
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {'run_id': '5aaccfaebae8', 'created_at': '2026-09-26T17:10:49.273797+00:00', 'title': 'Normal first build', 'scenario': 'safe', ...}
+E       assert 'REVIEW' == 'ACCEPT'
+E         
+E         - ACCEPT
+E         + REVIEW
+
+tests/test_integration.py:10: AssertionError</failure></testcase><testcase classname="tests.test_integration" name="test_weak_oracle_is_real_discrimination" time="0.007"><failure message="AssertionError: assert ('REVIEW' == 'BLOCK'&#10;  &#10;  - BLOCK&#10;  + REVIEW)">integration_runs = (&lt;backend.orchestrator.service.Service object at 0x7f79487e2e10&gt;, {'safe': RunContext(run_id='5aaccfaebae8', created_a...LVED', 'SATRA: INCONCLUSIVE'], lifecycle='COMPLETE', revision=1, clean_commit=None, clean_workspace=None, error=None)})
+
+    def test_weak_oracle_is_real_discrimination(integration_runs):
+        svc,runs=integration_runs;r=runs['satra_weak'];e=current(svc,r,'SATRA')
+&gt;       assert r.final_decision=='BLOCK' and e['status']=='REJECT'
+E       AssertionError: assert ('REVIEW' == 'BLOCK'
+E         
+E         - BLOCK
+E         + REVIEW)
+
+tests/test_integration.py:16: AssertionError</failure></testcase><testcase classname="tests.test_integration" name="test_ownership_regression" time="0.008"><failure message="AssertionError: assert ('REVIEW' == 'BLOCK'&#10;  &#10;  - BLOCK&#10;  + REVIEW)">integration_runs = (&lt;backend.orchestrator.service.Service object at 0x7f79487e2e10&gt;, {'safe': RunContext(run_id='5aaccfaebae8', created_a...LVED', 'SATRA: INCONCLUSIVE'], lifecycle='COMPLETE', revision=1, clean_commit=None, clean_workspace=None, error=None)})
+
+    def test_ownership_regression(integration_runs):
+        svc,runs=integration_runs;r=runs['satra_bypass'];e=current(svc,r,'SATRA')
+&gt;       assert r.final_decision=='BLOCK' and e['status']=='REJECT'
+E       AssertionError: assert ('REVIEW' == 'BLOCK'
+E         
+E         - BLOCK
+E         + REVIEW)
+
+tests/test_integration.py:24: AssertionError</failure></testcase><testcase classname="tests.test_integration" name="test_cavr_repair_invalidates_satra_then_reverifies" time="0.003"><failure message="AssertionError: {'run_id': 'bdc5f5ca7a64', 'created_at': '2026-09-26T17:11:46.291728+00:00', 'title': 'Repair invalidates earlier evidence', 'scenario': 'cross_module', ...}&#10;assert 'REVIEW' == 'ACCEPT'&#10;  &#10;  - ACCEPT&#10;  + REVIEW">integration_runs = (&lt;backend.orchestrator.service.Service object at 0x7f79487e2e10&gt;, {'safe': RunContext(run_id='5aaccfaebae8', created_a...LVED', 'SATRA: INCONCLUSIVE'], lifecycle='COMPLETE', revision=1, clean_commit=None, clean_workspace=None, error=None)})
+
+    def test_cavr_repair_invalidates_satra_then_reverifies(integration_runs):
+        svc,runs=integration_runs;r=runs['cross_module'];events=svc.store.events(r.run_id)
+&gt;       assert r.final_decision=='ACCEPT',r.model_dump()
+E       AssertionError: {'run_id': 'bdc5f5ca7a64', 'created_at': '2026-09-26T17:11:46.291728+00:00', 'title': 'Repair invalidates earlier evidence', 'scenario': 'cross_module', ...}
+E       assert 'REVIEW' == 'ACCEPT'
+E         
+E         - ACCEPT
+E         + REVIEW
+
+tests/test_integration.py:29: AssertionError</failure></testcase><testcase classname="tests.test_integration" name="test_satra_repair_differential" time="0.322"><failure message="AssertionError: {'run_id': 'ef56a24d5688', 'created_at': '2026-09-26T17:11:09.767937+00:00', 'title': 'The green test that misses a breach', 'scenario': 'satra_weak', ...}&#10;assert 'REVIEW' == 'ACCEPT'&#10;  &#10;  - ACCEPT&#10;  + REVIEW">integration_runs = (&lt;backend.orchestrator.service.Service object at 0x7f79487e2e10&gt;, {'safe': RunContext(run_id='5aaccfaebae8', created_a...LVED', 'SATRA: INCONCLUSIVE'], lifecycle='COMPLETE', revision=1, clean_commit=None, clean_workspace=None, error=None)})
+
+    def test_satra_repair_differential(integration_runs):
+        svc,runs=integration_runs;r=runs['satra_weak'];svc.analyze(r.run_id,auto_repair=True);fresh=svc.store.run(r.run_id)
+&gt;       assert fresh.final_decision=='ACCEPT',fresh.model_dump()
+E       AssertionError: {'run_id': 'ef56a24d5688', 'created_at': '2026-09-26T17:11:09.767937+00:00', 'title': 'The green test that misses a breach', 'scenario': 'satra_weak', ...}
+E       assert 'REVIEW' == 'ACCEPT'
+E         
+E         - ACCEPT
+E         + REVIEW
+
+tests/test_integration.py:39: AssertionError</failure></testcase><testcase classname="tests.test_integration" name="test_gateway_and_knowledge_revocation" time="5.818"><failure message="AssertionError: assert 'REVIEW' == 'ACCEPT'&#10;  &#10;  - ACCEPT&#10;  + REVIEW">integration_runs = (&lt;backend.orchestrator.service.Service object at 0x7f79487e2e10&gt;, {'safe': RunContext(run_id='5aaccfaebae8', created_a...LVED', 'SATRA: INCONCLUSIVE'], lifecycle='COMPLETE', revision=1, clean_commit=None, clean_workspace=None, error=None)})
+
+    def test_gateway_and_knowledge_revocation(integration_runs):
+        svc,runs=integration_runs;r=runs['safe']
+        assert svc.dependency_event(r.run_id,'pip install pypdf==6.19.0')['allowed']
+        assert not svc.dependency_event(r.run_id,'npm install unknown')['allowed']
+        before=len(svc.store.evidence(r.run_id));result=svc.change_threats(record_id='TRIG-ENV',enabled=False)
+        assert result['cleared_cache_entries']&gt;0
+        assert svc.current_run(r.run_id).final_decision=='REVIEW'
+        svc.analyze(r.run_id);assert svc.store.run(r.run_id).final_decision=='REVIEW'
+        assert current(svc,r,'CAVR')['status']=='UNRESOLVED'
+        svc.change_threats(record_id='TRIG-ENV',enabled=True);svc.analyze(r.run_id)
+&gt;       assert svc.store.run(r.run_id).final_decision=='ACCEPT'
+E       AssertionError: assert 'REVIEW' == 'ACCEPT'
+E         
+E         - ACCEPT
+E         + REVIEW
+
+tests/test_integration.py:52: AssertionError</failure></testcase><testcase classname="tests.test_modules" name="test_cavr_safe_cache_and_advisory" time="6.362" /><testcase classname="tests.test_modules" name="test_controlled_dormant_execution" time="6.783"><failure message="AssertionError: {'available': False, 'backend': 'docker', 'degraded': False, 'strace_status': {'available': True, 'path': '/usr/bin/strace', 'installed': True, 'reason': None}, ...}&#10;assert 'UNRESOLVED' == 'REJECTED'&#10;  &#10;  - REJECTED&#10;  + UNRESOLVED">service = &lt;backend.orchestrator.service.Service object at 0x7f794892aff0&gt;
+scenario = &lt;function scenario.&lt;locals&gt;.create at 0x7f794fd77ba0&gt;
+tmp_path = PosixPath('/tmp/pytest-of-seed/pytest-2/test_controlled_dormant_execut0')
+
+    def test_controlled_dormant_execution(service,scenario,tmp_path):
+        r,c=scenario('cavr_canary');status,details,_=cavr(c,service.store,tmp_path/'lab',lambda *a:None)
+        node=next(n for n in details['nodes'] if n['name']=='invoice-pdf-lab')
+&gt;       assert status=='REJECTED',node.get('runtime')
+E       AssertionError: {'available': False, 'backend': 'docker', 'degraded': False, 'strace_status': {'available': True, 'path': '/usr/bin/strace', 'installed': True, 'reason': None}, ...}
+E       assert 'UNRESOLVED' == 'REJECTED'
+E         
+E         - REJECTED
+E         + UNRESOLVED
+
+tests/test_modules.py:28: AssertionError</failure></testcase><testcase classname="tests.test_modules" name="test_trigger_and_runtime_normalization" time="0.005" /><testcase classname="tests.test_modules" name="test_repair_constraints" time="0.012" /><testcase classname="tests.test_modules" name="test_sable_real_hcl[safe-PRESERVED]" time="0.195" /><testcase classname="tests.test_modules" name="test_sable_real_hcl[sable_preserved-PRESERVED]" time="0.206" /><testcase classname="tests.test_modules" name="test_sable_real_hcl[sable_regressed-REGRESSED]" time="0.211" /><testcase classname="tests.test_modules" name="test_sable_real_hcl[sable_unknown-UNKNOWN]" time="0.191" /><testcase classname="tests.test_modules" name="test_sable_real_hcl[sable_widened-REGRESSED]" time="0.228" /><testcase classname="tests.test_modules" name="test_sable_unknown_parse_and_disabled" time="0.175" /><testcase classname="tests.test_modules" name="test_satra_scc_and_inconclusive" time="0.375" /><testcase classname="tests.test_modules" name="test_oracle_validation_rejects_errors" time="0.001" /><testcase classname="tests.test_modules" name="test_builtin_fallback_rejects_native_or_unknown_configuration" time="0.135" /><testcase classname="tests.test_shared" name="test_context_evidence_integrity" time="0.138" /><testcase classname="tests.test_shared" name="test_routing[requirements.txt-expected0]" time="0.001" /><testcase classname="tests.test_shared" name="test_routing[app/security.py-expected1]" time="0.001" /><testcase classname="tests.test_shared" name="test_routing[tests/test_security.py-expected2]" time="0.001" /><testcase classname="tests.test_shared" name="test_routing[infra/main.tf-expected3]" time="0.001" /><testcase classname="tests.test_shared" name="test_routing[policy.json-expected4]" time="0.001" /><testcase classname="tests.test_shared" name="test_routing[README.md-expected5]" time="0.001" /><testcase classname="tests.test_shared" name="test_routing[vendor/package.py-expected6]" time="0.001" /><testcase classname="tests.test_shared" name="test_final_matrix[VERIFIED-ACCEPT-PRESERVED-ACCEPT]" time="0.001" /><testcase classname="tests.test_shared" name="test_final_matrix[REJECTED-ACCEPT-PRESERVED-BLOCK]" time="0.001" /><testcase classname="tests.test_shared" name="test_final_matrix[VERIFIED-REJECT-PRESERVED-BLOCK]" time="0.002" /><testcase classname="tests.test_shared" name="test_final_matrix[VERIFIED-ACCEPT-REGRESSED-BLOCK]" time="0.001" /><testcase classname="tests.test_shared" name="test_final_matrix[UNRESOLVED-ACCEPT-PRESERVED-REVIEW]" time="0.001" /><testcase classname="tests.test_shared" name="test_final_matrix[VERIFIED-INCONCLUSIVE-PRESERVED-REVIEW]" time="0.002" /><testcase classname="tests.test_shared" name="test_final_matrix[VERIFIED-RETRY-PRESERVED-REVIEW]" time="0.001" /><testcase classname="tests.test_shared" name="test_final_matrix[VERIFIED-ACCEPT-UNKNOWN-REVIEW]" time="0.001" /><testcase classname="tests.test_shared" name="test_final_matrix[REJECTED-INCONCLUSIVE-UNKNOWN-BLOCK]" time="0.002" /><testcase classname="tests.test_shared" name="test_final_matrix[VERIFIED-ACCEPT-NOT_APPLICABLE-ACCEPT]" time="0.002" /><testcase classname="tests.test_shared" name="test_gate_refuses_stale[patch0]" time="0.001" /><testcase classname="tests.test_shared" name="test_gate_refuses_stale[patch1]" time="0.001" /><testcase classname="tests.test_shared" name="test_gate_refuses_stale[patch2]" time="0.001" /><testcase classname="tests.test_shared" name="test_gate_refuses_stale[patch3]" time="0.001" /><testcase classname="tests.test_shared" name="test_restricted_requires_enforcement" time="0.001" /><testcase classname="tests.test_shared" name="test_invalidation_paths" time="0.210" /><testcase classname="tests.test_shared" name="test_watch_and_safe_gateway" time="0.004" /><testcase classname="tests.test_threat_repository" name="test_version_history_import_export_atomic" time="0.122" /><testcase classname="tests.test_threat_repository" name="test_knowledge_invalidates_only_relevant" time="0.220" /><testcase classname="tests.test_threat_repository" name="test_osv_import_ranges_and_provenance" time="0.061" /><testcase classname="tests.test_threat_repository" name="test_package_name_is_only_supporting_evidence" time="0.056" /><testcase classname="tests.test_threat_repository" name="test_genuine_public_advisory_range" time="0.436" /></testsuite></testsuites>

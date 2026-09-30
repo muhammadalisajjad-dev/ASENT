@@ -1,0 +1,42 @@
+{
+  "records": [
+    {
+      "id": "PYSEC-2026-3005.0",
+      "category": "vulnerabilities",
+      "name": "pypdf circular reference-stream loop",
+      "description": "Crafted PDF cross-reference metadata can prevent the reader from terminating. Fixed in 6.7.2.",
+      "severity": "LOW",
+      "source_id": "SRC-OSV",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "ecosystem": "PyPI",
+        "package": "pypdf",
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "6.7.2"
+              }
+            ]
+          }
+        ],
+        "versions": [],
+        "advisory_id": "PYSEC-2026-3005",
+        "aliases": [
+          "CVE-2026-27628",
+          "GHSA-2rw7-x74f-jg35"
+        ],
+        "retrieved_at": "2026-09-26T00:00:00+00:00",
+        "last_updated": "2026-07-13T16:33:08.814408153Z",
+        "reference": "https://osv.dev/vulnerability/PYSEC-2026-3005",
+        "retrieval_method": "Reviewed public OSV web record; transcribed range facts, not a fabricated API response"
+      }
+    }
+  ]
+}

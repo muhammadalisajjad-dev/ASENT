@@ -1,0 +1,12 @@
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+pydantic>=2.8,<3
+networkx>=3.3,<4
+z3-solver>=4.13,<6
+python-hcl2==8.1.4
+pytest>=8,<10
+httpx[socks]>=0.27,<1
+pypdf==6.19.0
+python-multipart>=0.0.18
+packaging>=24
+bandit>=1.8,<2

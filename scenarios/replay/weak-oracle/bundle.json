@@ -1,0 +1,14 @@
+{
+  "schema": "asent.replay.v1",
+  "title": "Recorded controlled oracle edit",
+  "repository": "baseline",
+  "events": "events.jsonl",
+  "initial_snapshot_sha256": "a392e997af7bfb0fbc89244c3aa6f6ecdf6a541f132cfd46e1c3c3da0b4f534e",
+  "trace_sha256": "b06cd34e8322870c7ffa0b4b651faa8bddc91d92d4ca3503abe76e937a9c837b",
+  "controlled": true,
+  "agent_metadata": {
+    "provider": "none",
+    "origin": "ASENT controlled reproduction"
+  },
+  "provenance": "Project-authored file events; not an observed AI-agent failure"
+}

@@ -1,0 +1,31 @@
+{
+  "evidence": {
+    "runId": "c6f6239d62b4",
+    "finalDecision": "REVIEW",
+    "reasons": [
+      "SATRA: INCONCLUSIVE"
+    ],
+    "applicable": [
+      "CAVR",
+      "SATRA",
+      "SABLE"
+    ],
+    "modules": {
+      "CAVR": {
+        "status": "VERIFIED",
+        "stale": false,
+        "integrityValid": true
+      },
+      "SATRA": {
+        "status": "INCONCLUSIVE",
+        "stale": false,
+        "integrityValid": true
+      },
+      "SABLE": {
+        "status": "PRESERVED",
+        "stale": false,
+        "integrityValid": true
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "records": [
+    {
+      "id": "CAP-PDF-001",
+      "category": "capability_rules",
+      "name": "Local PDF extraction",
+      "description": "Reading supplied PDFs and temporary files is justified. Secrets, persistence and arbitrary subprocess/network access are not.",
+      "severity": "MEDIUM",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "task": "pdf extraction",
+        "required": [
+          {
+            "capability": "FILE_READ",
+            "scope": "supplied PDF"
+          },
+          {
+            "capability": "FILE_WRITE",
+            "scope": "temporary workspace"
+          }
+        ],
+        "denied": [
+          "SECRET_ACCESS",
+          "NETWORK_CONNECT",
+          "PROCESS_CREATE",
+          "PERSISTENCE_WRITE",
+          "EXECUTE_BINARY"
+        ]
+      }
+    },
+    {
+      "id": "CAP-HTTP-001",
+      "category": "capability_rules",
+      "name": "Scoped HTTP client",
+      "description": "A justified HTTP client may connect to approved endpoints. Network use alone is not a maliciousness decision.",
+      "severity": "MEDIUM",
+      "source_id": "SRC-ASENT",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "task": "http client",
+        "required": [
+          {
+            "capability": "NETWORK_CONNECT",
+            "scope": "approved endpoints"
+          }
+        ],
+        "denied": [
+          "SECRET_ACCESS",
+          "PERSISTENCE_WRITE",
+          "PROCESS_CREATE"
+        ]
+      }
+    }
+  ]
+}

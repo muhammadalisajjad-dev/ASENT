@@ -1,0 +1,1 @@
+{"evidence": {"status": "PRESERVED", "successor": "aws_s3_bucket.invoice_data", "runId": "c6f6239d62b4", "finalDecision": "REVIEW", "reasons": ["SATRA: INCONCLUSIVE"], "stale": false, "integrityValid": true}}

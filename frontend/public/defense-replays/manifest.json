@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "replays": {
+    "cavr": {
+      "file": "cavr.mp4",
+      "title": "CAVR \u00b7 Capability assurance",
+      "description": "Visualized security workflow from the selected ASENT run and evidence objects; live evidence remains authoritative.",
+      "duration_seconds": 20,
+      "run_id": "c6f6239d62b4",
+      "source": "local controlled visualization"
+    },
+    "satra": {
+      "file": "satra.mp4",
+      "title": "SATRA-RV \u00b7 Change assurance",
+      "description": "Visualized security workflow from the selected ASENT run and evidence objects; live evidence remains authoritative.",
+      "duration_seconds": 20,
+      "run_id": "c6f6239d62b4",
+      "source": "local controlled visualization"
+    },
+    "sable": {
+      "file": "sable.mp4",
+      "title": "SABLE \u00b7 Resource continuity",
+      "description": "Animated controlled/local visualization from the selected ASENT run and evidence objects; live evidence remains authoritative.",
+      "duration_seconds": 20,
+      "run_id": "c6f6239d62b4",
+      "evidence_timestamp": "2026-09-26T18:00:32.760284+00:00",
+      "source": "local controlled visualization"
+    },
+    "integrated": {
+      "file": "integrated.mp4",
+      "title": "Cross-module convergence \u00b7 evidence to trust gate",
+      "description": "Visualized security workflow from the selected ASENT run and evidence objects; live evidence remains authoritative.",
+      "duration_seconds": 15,
+      "run_id": "c6f6239d62b4",
+      "source": "local controlled visualization"
+    },
+    "full": {
+      "file": "full.mp4",
+      "title": "Security mechanism sequence \u00b7 evidence through the trust gate",
+      "description": "Visualized security workflow from the selected ASENT run and evidence objects; live evidence remains authoritative.",
+      "duration_seconds": 75,
+      "run_id": "c6f6239d62b4",
+      "source": "local controlled visualization"
+    }
+  }
+}

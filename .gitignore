@@ -1,0 +1,14 @@
+.venv/
+frontend/node_modules/
+__pycache__/
+*.pyc
+runtime*/
+.env
+.pytest_cache/
+
+# Local/generated files not needed in GitHub
+video-renderer/node_modules/
+video-renderer/*.tmp.mp4
+frontend/dist/
+ASENT_CODEX_MASTER_HANDOFF.md
+ASENT_ANTIGRAVITY_LIVE_HANDOFF_ADDENDUM.md

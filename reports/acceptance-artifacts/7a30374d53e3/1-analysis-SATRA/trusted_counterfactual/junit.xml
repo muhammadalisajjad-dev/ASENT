@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="6" time="0.240" timestamp="2026-09-26T20:12:47.709631+05:00" hostname="5845720a6829"><testcase classname="assurance.test_security" name="test_nonowner_denied" time="0.189"><failure message="assert 200 == 403&#10; +  where 200 = &lt;Response [200 OK]&gt;.status_code">case = (&lt;starlette.testclient.TestClient object at 0x7f11f965e570&gt;, {'Authorization': 'Bearer PaZ7WaGoa-RmjCSbRxq5UaG7dSV2su9...RbhX7J1ZP4oIBWlhIjpzvjkInZRHrkZ6OQb2vlDg'}, {'Authorization': 'Bearer XJYXGm-IYeAM4xtsFAhBIVbTrZU6TyvqdDAc28jPam8'}, 1)
+
+    def test_nonowner_denied(case):
+        c,a,b,admin,i=case
+        before=c.get('/invoices',headers=a).json()
+        response=c.get(f'/invoices/{i}',headers=b)
+&gt;       assert response.status_code==403
+E       assert 200 == 403
+E        +  where 200 = &lt;Response [200 OK]&gt;.status_code
+
+assurance/test_security.py:5: AssertionError</failure></testcase><testcase classname="assurance.test_security" name="test_unauthenticated_denied" time="0.002" /><testcase classname="assurance.test_security" name="test_normal_user_not_admin" time="0.004" /><testcase classname="assurance.test_security" name="test_nonowner_cannot_delete" time="0.003"><failure message="AssertionError: assert 200 == 403&#10; +  where 200 = &lt;Response [200 OK]&gt;.status_code&#10; +    where &lt;Response [200 OK]&gt; = delete('/invoices/1', headers={'Authorization': 'Bearer e2qRbhX7J1ZP4oIBWlhIjpzvjkInZRHrkZ6OQb2vlDg'})&#10; +      where delete = &lt;starlette.testclient.TestClient object at 0x7f11f965e570&gt;.delete">case = (&lt;starlette.testclient.TestClient object at 0x7f11f965e570&gt;, {'Authorization': 'Bearer PaZ7WaGoa-RmjCSbRxq5UaG7dSV2su9...RbhX7J1ZP4oIBWlhIjpzvjkInZRHrkZ6OQb2vlDg'}, {'Authorization': 'Bearer XJYXGm-IYeAM4xtsFAhBIVbTrZU6TyvqdDAc28jPam8'}, 1)
+
+    def test_nonowner_cannot_delete(case):
+        c,a,b,admin,i=case
+&gt;       assert c.delete(f'/invoices/{i}',headers=b).status_code==403
+E       AssertionError: assert 200 == 403
+E        +  where 200 = &lt;Response [200 OK]&gt;.status_code
+E        +    where &lt;Response [200 OK]&gt; = delete('/invoices/1', headers={'Authorization': 'Bearer e2qRbhX7J1ZP4oIBWlhIjpzvjkInZRHrkZ6OQb2vlDg'})
+E        +      where delete = &lt;starlette.testclient.TestClient object at 0x7f11f965e570&gt;.delete
+
+assurance/test_security.py:18: AssertionError</failure></testcase><testcase classname="assurance.test_security" name="test_reject_non_pdf" time="0.004" /><testcase classname="assurance.test_security" name="test_sql_login_payload" time="0.001" /></testsuite></testsuites>

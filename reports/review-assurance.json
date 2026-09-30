@@ -1,0 +1,2801 @@
+{
+  "schema": "asent.assurance.v1",
+  "run": {
+    "run_id": "71edccfa7432",
+    "created_at": "2026-09-26T15:12:51.054854+00:00",
+    "title": "Storage refactor \u00b7 ambiguous",
+    "scenario": "sable_unknown",
+    "mode": "manual",
+    "evidence_source": "CONTROLLED REPRODUCTION",
+    "agent_metadata": {},
+    "srs_digest": "45811d79f5931f932b74dd36694d6962ea67b8b567867a120bd067a192c1db53",
+    "approved_plan_digest": "d56794022b76f0c92aa4307539612e883aae0744a14418648bdbaa4667d233ea",
+    "policy_digest": "e963284e836a23f8086092bb77a216615de986a97bc3c718dc5709d8f4faaa8e",
+    "threat_repo_version": "TR-2026.09.26.001",
+    "threat_repo_digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+    "baseline_commit": "76abd66ec19d137e7321e5a8eccdcbe66c63fb3b",
+    "candidate_snapshot": "08332133447e725ac355297e8de76faeb66d4255790019ce827cca225e87ef73",
+    "candidate_workspace": "/tmp/asent-final-http-c3g4vhv4/runtime/workspaces/71edccfa7432/candidate",
+    "baseline_workspace": "/tmp/asent-final-http-c3g4vhv4/runtime/workspaces/71edccfa7432/baseline",
+    "changed_surfaces": {
+      "CAVR": [
+        "plan.md"
+      ],
+      "SATRA": [
+        "plan.md"
+      ],
+      "SABLE": [
+        "infra/main.tf",
+        "infra/modules/storage/main.tf",
+        "plan.md"
+      ]
+    },
+    "module_evidence_ids": {
+      "SABLE": "bb762502f1894d0083808154ff9c57a3",
+      "CAVR": "31d20c113aa649b4be32612d5720cb42",
+      "SATRA": "7dd713857645492d859278ef9e9482db"
+    },
+    "applicable": [
+      "CAVR",
+      "SATRA",
+      "SABLE"
+    ],
+    "final_decision": "REVIEW",
+    "reasons": [
+      "SABLE: UNKNOWN"
+    ],
+    "lifecycle": "COMPLETE",
+    "revision": 1,
+    "clean_commit": null,
+    "clean_workspace": null,
+    "error": null
+  },
+  "evidence": [
+    {
+      "evidence_id": "bb762502f1894d0083808154ff9c57a3",
+      "run_id": "71edccfa7432",
+      "analyzer": "SABLE",
+      "analyzer_version": "1.0.0",
+      "threat_repo_version": "TR-2026.09.26.001",
+      "threat_repo_digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+      "threat_module_digest": "527350add0b27d0d176dc7e839c85f27945ec07c76ffa26e4e33e09301c0cb31",
+      "candidate_snapshot": "08332133447e725ac355297e8de76faeb66d4255790019ce827cca225e87ef73",
+      "input_hash": "63e5864cd950893d0dce67066526f2b366b7f5466cef3c8b5cc85a5eecd5109f",
+      "status": "UNKNOWN",
+      "blocking": false,
+      "residual_uncertainty": [
+        "Successor scores are too close for a unique attribution"
+      ],
+      "affected_files": [
+        "SRS.md",
+        "plan.md",
+        "policy.json",
+        "infra/main.tf",
+        "infra/modules/storage/main.tf"
+      ],
+      "evidence_refs": [
+        "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SABLE"
+      ],
+      "details": {
+        "baseline_graph": {
+          "nodes": [
+            {
+              "id": "aws_s3_bucket.invoice_data",
+              "type": "aws_s3_bucket"
+            },
+            {
+              "id": "aws_iam_role.app",
+              "type": "aws_iam_role"
+            },
+            {
+              "id": "aws_iam_role_policy.invoice_access",
+              "type": "aws_iam_role_policy"
+            }
+          ],
+          "edges": [
+            {
+              "source": "aws_iam_role_policy.invoice_access",
+              "target": "aws_iam_role.app",
+              "relation": "references"
+            },
+            {
+              "source": "aws_iam_role_policy.invoice_access",
+              "target": "aws_s3_bucket.invoice_data",
+              "relation": "references"
+            }
+          ]
+        },
+        "candidate_graph": {
+          "nodes": [
+            {
+              "id": "aws_iam_role.app",
+              "type": "aws_iam_role"
+            },
+            {
+              "id": "aws_iam_role_policy.invoice_access",
+              "type": "aws_iam_role_policy"
+            },
+            {
+              "id": "module.storage.aws_s3_bucket.active_invoices",
+              "type": "aws_s3_bucket"
+            },
+            {
+              "id": "module.storage.aws_s3_bucket.archive_invoices",
+              "type": "aws_s3_bucket"
+            }
+          ],
+          "edges": [
+            {
+              "source": "aws_iam_role_policy.invoice_access",
+              "target": "aws_iam_role.app",
+              "relation": "references"
+            },
+            {
+              "source": "aws_iam_role_policy.invoice_access",
+              "target": "module.storage.aws_s3_bucket.active_invoices",
+              "relation": "references"
+            }
+          ]
+        },
+        "moves": [],
+        "hypotheses": [
+          {
+            "address": "module.storage.aws_s3_bucket.active_invoices",
+            "score": 7,
+            "signals": [
+              {
+                "signal": "resource type",
+                "weight": 1
+              },
+              {
+                "signal": "stable Asset attribute",
+                "weight": 4
+              },
+              {
+                "signal": "lifecycle role",
+                "weight": 2
+              }
+            ],
+            "references": [
+              "aws_iam_role_policy.invoice_access"
+            ],
+            "module": "module.storage."
+          },
+          {
+            "address": "module.storage.aws_s3_bucket.archive_invoices",
+            "score": 7,
+            "signals": [
+              {
+                "signal": "resource type",
+                "weight": 1
+              },
+              {
+                "signal": "stable Asset attribute",
+                "weight": 4
+              },
+              {
+                "signal": "lifecycle role",
+                "weight": 2
+              }
+            ],
+            "references": [],
+            "module": "module.storage."
+          }
+        ],
+        "obligation": {
+          "principal": "aws_iam_role.app",
+          "protected_asset": "aws_s3_bucket.invoice_data",
+          "actions": [
+            "s3:GetObject",
+            "s3:PutObject"
+          ],
+          "authority": "trusted baseline + registered policy"
+        },
+        "parse_errors": [],
+        "baseline_verification": {
+          "known": true,
+          "holds": true,
+          "expected_actions": [
+            "s3:GetObject",
+            "s3:PutObject"
+          ],
+          "actual_actions": [
+            "s3:GetObject",
+            "s3:PutObject"
+          ],
+          "expected_resource": "${aws_s3_bucket.invoice_data.arn}/*",
+          "unexpected_resources": [],
+          "grants": [
+            {
+              "policy": "aws_iam_role_policy.invoice_access",
+              "actions": [
+                "s3:GetObject",
+                "s3:PutObject"
+              ],
+              "resources": [
+                "${aws_s3_bucket.invoice_data.arn}/*"
+              ],
+              "effect": "Allow"
+            }
+          ],
+          "reason": "Exact modeled least privilege holds"
+        },
+        "conflicts": [],
+        "successor": null,
+        "correspondence_reason": "Successor scores are too close for a unique attribution",
+        "reason": "Successor scores are too close for a unique attribution",
+        "knowledge": {
+          "threat_repo_version": "TR-2026.09.26.001",
+          "digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+          "module_digest": "527350add0b27d0d176dc7e839c85f27945ec07c76ffa26e4e33e09301c0cb31",
+          "rules": [
+            {
+              "id": "SABLE-S3IAM-001",
+              "version": 1,
+              "source_id": "SRC-AWS",
+              "description": "The original action/resource obligation must hold on a uniquely supported successor.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "SABLE-SUCCESSOR-001",
+              "version": 1,
+              "source_id": "SRC-TERRAFORM",
+              "description": "Use multiple structural signals and explicit moves; do not use resource-name similarity as proof.",
+              "severity": "HIGH"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-AWS",
+              "category": "sources",
+              "name": "AWS S3 least privilege guidance",
+              "severity": "INFO",
+              "description": "Principal, action and resource relationships motivate the bounded model.",
+              "source_id": "SRC-AWS",
+              "enabled": true,
+              "version": 1,
+              "updated_at": "2026-09-26T00:00:00+00:00",
+              "data": {
+                "source_type": "official advisory",
+                "reference": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html",
+                "trust_class": "official documentation",
+                "license_note": "Paraphrased rule; no documentation text redistributed",
+                "retrieved_at": "2026-09-26T00:00:00+00:00"
+              }
+            },
+            {
+              "id": "SRC-TERRAFORM",
+              "category": "sources",
+              "name": "Terraform refactoring documentation",
+              "severity": "INFO",
+              "description": "Explicit moved blocks are one correspondence signal.",
+              "source_id": "SRC-TERRAFORM",
+              "enabled": true,
+              "version": 1,
+              "updated_at": "2026-09-26T00:00:00+00:00",
+              "data": {
+                "source_type": "public tool",
+                "reference": "https://developer.hashicorp.com/terraform/language/modules/develop/refactoring",
+                "trust_class": "official documentation",
+                "license_note": "Paraphrased semantics",
+                "retrieved_at": "2026-09-26T00:00:00+00:00"
+              }
+            }
+          ],
+          "role": "Supporting reusable knowledge, combined with observed evidence and independent project obligations"
+        }
+      },
+      "created_at": "2026-09-26T15:12:51.547372+00:00",
+      "duration_ms": 439.62,
+      "reused_from": null,
+      "content_hash": "d24cc04f424ddd4a813ecb351a5ca84776a2f793c7845845700f3c2e5b5df7e7",
+      "integrity_valid": true,
+      "stale": false
+    },
+    {
+      "evidence_id": "31d20c113aa649b4be32612d5720cb42",
+      "run_id": "71edccfa7432",
+      "analyzer": "CAVR",
+      "analyzer_version": "1.0.0",
+      "threat_repo_version": "TR-2026.09.26.001",
+      "threat_repo_digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+      "threat_module_digest": "fddee57c3f5c1ea75ecdc48d3419f1142648aa90b9960f2ff04f814badd385cf",
+      "candidate_snapshot": "08332133447e725ac355297e8de76faeb66d4255790019ce827cca225e87ef73",
+      "input_hash": "e77dfc7ad2b21a74c92410a5ca9d9d7c25ba8afd77a935bee5c2594aa280791a",
+      "status": "VERIFIED",
+      "blocking": false,
+      "residual_uncertainty": [
+        "Selected Python source/capability model; does not prove arbitrary package safety"
+      ],
+      "affected_files": [
+        "SRS.md",
+        "dependencies.lock.json",
+        "plan.md",
+        "policy.json",
+        "requirements.txt",
+        "app/__init__.py",
+        "app/main.py",
+        "app/pdf_adapter.py",
+        "app/security.py"
+      ],
+      "evidence_refs": [
+        "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-CAVR"
+      ],
+      "details": {
+        "nodes": [
+          {
+            "name": "pypdf",
+            "version": "6.19.0",
+            "sha256": "7e5d6e730e7dae87d560a2cee218b852f6498c8be61966f3cd02ead971e48d14",
+            "artifact": "artifacts/pypdf-6.19.0-py3-none-any.whl",
+            "ecosystem": "PyPI",
+            "cache_hit": false,
+            "threat_matches": [],
+            "known_vulnerabilities": [],
+            "threat_correlations": [],
+            "threat_repo_version": "TR-2026.09.26.001",
+            "status": "VERIFIED",
+            "metadata": {
+              "name": "pypdf",
+              "version": "6.19.0",
+              "requires_dist": [
+                "typing_extensions >= 4.0; python_version < '3.11'",
+                "cryptography>3.0 ; extra == \"crypto\"",
+                "PyCryptodome ; extra == \"cryptodome\"",
+                "flit ; extra == \"dev\"",
+                "pip-tools ; extra == \"dev\"",
+                "pre-commit ; extra == \"dev\"",
+                "pytest-cov ; extra == \"dev\"",
+                "pytest-socket ; extra == \"dev\"",
+                "pytest-timeout ; extra == \"dev\"",
+                "pytest-xdist ; extra == \"dev\"",
+                "wheel ; extra == \"dev\"",
+                "myst_parser ; extra == \"docs\"",
+                "sphinx ; extra == \"docs\"",
+                "sphinx_rtd_theme ; extra == \"docs\"",
+                "fonttools ; extra == \"fonts\"",
+                "arabic-reshaper ; extra == \"full\"",
+                "cryptography>3.0 ; extra == \"full\"",
+                "fonttools ; extra == \"full\"",
+                "Pillow>=8.0.0 ; extra == \"full\"",
+                "python-bidi ; extra == \"full\"",
+                "Pillow>=8.0.0 ; extra == \"image\"",
+                "arabic-reshaper ; extra == \"rtl-text\"",
+                "python-bidi ; extra == \"rtl-text\""
+              ],
+              "registry_digest_verified": true
+            },
+            "contract": {
+              "purpose": "local invoice PDF text extraction",
+              "vocabulary": [
+                "DYNAMIC_DOWNLOAD",
+                "DYNAMIC_EXECUTION",
+                "FILE_READ",
+                "FILE_WRITE",
+                "NATIVE_EXEC",
+                "NETWORK_CONNECT",
+                "PERSISTENCE_WRITE",
+                "PROCESS_EXEC",
+                "SECRET_READ",
+                "SENSITIVE_FILE_READ"
+              ],
+              "required": [
+                {
+                  "capability": "FILE_READ",
+                  "scope": "supplied PDF"
+                },
+                {
+                  "capability": "FILE_WRITE",
+                  "scope": "temporary workspace"
+                }
+              ],
+              "denied": [
+                "EXECUTE_BINARY",
+                "NETWORK_CONNECT",
+                "PERSISTENCE_WRITE",
+                "PROCESS_CREATE",
+                "SECRET_ACCESS"
+              ],
+              "evidence": {
+                "imports": [
+                  {
+                    "file": "app/main.py",
+                    "line": 2,
+                    "module": "__future__",
+                    "names": [
+                      "annotations"
+                    ]
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 10,
+                    "module": "pathlib",
+                    "names": [
+                      "Path"
+                    ]
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 11,
+                    "module": "typing",
+                    "names": [
+                      "Annotated"
+                    ]
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 12,
+                    "module": "fastapi",
+                    "names": [
+                      "Depends",
+                      "FastAPI",
+                      "File",
+                      "Header",
+                      "HTTPException",
+                      "UploadFile"
+                    ]
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 13,
+                    "module": "pydantic",
+                    "names": [
+                      "BaseModel",
+                      "Field"
+                    ]
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 14,
+                    "module": "security",
+                    "names": [
+                      "can_access_invoice",
+                      "is_admin"
+                    ]
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 15,
+                    "module": "pdf_adapter",
+                    "names": [
+                      "extract_invoice_text"
+                    ]
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 1,
+                    "module": "io",
+                    "names": [
+                      "BytesIO"
+                    ]
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 2,
+                    "module": "pypdf",
+                    "names": [
+                      "PdfReader",
+                      "apply_configuration"
+                    ]
+                  }
+                ],
+                "call_sites": [
+                  {
+                    "file": "app/main.py",
+                    "line": 18,
+                    "expression": "Field"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 19,
+                    "expression": "Field"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 23,
+                    "expression": "hashlib.pbkdf2_hmac('sha256', password.encode(), bytes.fromhex(salt), 120000).hex"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 27,
+                    "expression": "Path"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 28,
+                    "expression": "root.mkdir"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 30,
+                    "expression": "objects.mkdir"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 32,
+                    "expression": "archive.mkdir"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 33,
+                    "expression": "threading.RLock"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 35,
+                    "expression": "FastAPI"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 60,
+                    "expression": "app.get"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 62,
+                    "expression": "app.post"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 71,
+                    "expression": "app.post"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 80,
+                    "expression": "app.get"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 82,
+                    "expression": "app.post"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 96,
+                    "expression": "app.get"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 105,
+                    "expression": "app.get"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 110,
+                    "expression": "app.delete"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 117,
+                    "expression": "app.get"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 122,
+                    "expression": "app.delete"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 126,
+                    "expression": "app.post"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 37,
+                    "expression": "sqlite3.connect"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 40,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 41,
+                    "expression": "con.executescript"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 55,
+                    "expression": "hashlib.sha256(authorization[7:].encode()).hexdigest"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 59,
+                    "expression": "dict"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 64,
+                    "expression": "secrets.token_hex"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 81,
+                    "expression": "Depends"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 83,
+                    "expression": "File"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 83,
+                    "expression": "Depends"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 90,
+                    "expression": "(objects / key).write_bytes"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 97,
+                    "expression": "Depends"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 104,
+                    "expression": "dict"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 106,
+                    "expression": "Depends"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 107,
+                    "expression": "get_record"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 111,
+                    "expression": "Depends"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 112,
+                    "expression": "get_record"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 115,
+                    "expression": "((archive if row['archived'] else objects) / row['object_key']).unlink"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 118,
+                    "expression": "Depends"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 123,
+                    "expression": "Depends"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 125,
+                    "expression": "delete_invoice"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 127,
+                    "expression": "Depends"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 23,
+                    "expression": "hashlib.pbkdf2_hmac"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 27,
+                    "expression": "os.environ.get"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 47,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 54,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 56,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 57,
+                    "expression": "con.execute('SELECT users.* FROM users JOIN sessions ON users.id=sessions.user_id WHERE sessions.token_hash=? AND sessions.expires>?', (key, time.time())).fetchone"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 58,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 73,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 74,
+                    "expression": "con.execute('SELECT * FROM users WHERE username=?', (body.username,)).fetchone"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 77,
+                    "expression": "secrets.token_urlsafe"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 78,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 84,
+                    "expression": "file.read"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 85,
+                    "expression": "len"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 85,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 86,
+                    "expression": "content.startswith"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 86,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 87,
+                    "expression": "extract_invoice_text"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 89,
+                    "expression": "secrets.token_hex"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 92,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 93,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 98,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 99,
+                    "expression": "con.execute('SELECT id,owner_id,filename,text,created,archived FROM invoices WHERE owner_id=? ORDER BY id DESC', (user['id'],)).fetchall"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 100,
+                    "expression": "dict"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 102,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 102,
+                    "expression": "con.execute('SELECT * FROM invoices WHERE id=?', (iid,)).fetchone"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 103,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 108,
+                    "expression": "can_access_invoice"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 108,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 113,
+                    "expression": "can_access_invoice"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 113,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 114,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 114,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 119,
+                    "expression": "is_admin"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 119,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 120,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 120,
+                    "expression": "con.execute('SELECT id,owner_id,filename,text,created,archived FROM invoices').fetchall"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 121,
+                    "expression": "dict"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 124,
+                    "expression": "is_admin"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 124,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 128,
+                    "expression": "is_admin"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 128,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 129,
+                    "expression": "time.time"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 131,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 132,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 133,
+                    "expression": "con.execute('SELECT id,object_key FROM invoices WHERE created<? AND archived=0', (cutoff,)).fetchall"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 142,
+                    "expression": "len"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 23,
+                    "expression": "password.encode"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 23,
+                    "expression": "bytes.fromhex"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 46,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 50,
+                    "expression": "secrets.token_hex"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 51,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 53,
+                    "expression": "authorization.startswith"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 55,
+                    "expression": "hashlib.sha256"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 66,
+                    "expression": "db"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 67,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 69,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 76,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 88,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 91,
+                    "expression": "Path"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 109,
+                    "expression": "row.items"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 52,
+                    "expression": "Header"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 55,
+                    "expression": "authorization[7:].encode"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 57,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 74,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 75,
+                    "expression": "hmac.compare_digest"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 78,
+                    "expression": "hashlib.sha256(token.encode()).hexdigest"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 91,
+                    "expression": "(file.filename or 'invoice.pdf').replace"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 93,
+                    "expression": "time.time"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 99,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 102,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 120,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 133,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 137,
+                    "expression": "src.replace"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 137,
+                    "expression": "moved.append"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 138,
+                    "expression": "con.execute"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 140,
+                    "expression": "reversed"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 141,
+                    "expression": "HTTPException"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 51,
+                    "expression": "password_hash"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 67,
+                    "expression": "password_hash"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 75,
+                    "expression": "password_hash"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 78,
+                    "expression": "time.time"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 140,
+                    "expression": "dst.replace"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 57,
+                    "expression": "time.time"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 78,
+                    "expression": "hashlib.sha256"
+                  },
+                  {
+                    "file": "app/main.py",
+                    "line": 78,
+                    "expression": "token.encode"
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 7,
+                    "expression": "apply_configuration"
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 8,
+                    "expression": "PdfReader"
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 11,
+                    "expression": "'\\n'.join"
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 8,
+                    "expression": "BytesIO"
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 9,
+                    "expression": "len"
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 10,
+                    "expression": "ValueError"
+                  },
+                  {
+                    "file": "app/pdf_adapter.py",
+                    "line": 11,
+                    "expression": "page.extract_text"
+                  }
+                ],
+                "parse_errors": [],
+                "srs_digest": "45811d79f5931f932b74dd36694d6962ea67b8b567867a120bd067a192c1db53",
+                "plan_digest": "d56794022b76f0c92aa4307539612e883aae0744a14418648bdbaa4667d233ea"
+              },
+              "knowledge_rule": "CAP-PDF-001",
+              "confidence": "rule-grounded",
+              "package": "pypdf",
+              "authority": "SRS + actual call sites + reusable knowledge + minimum local-PDF boundary",
+              "digest": "1bebbe533c8f29bd039240bce734c384856a603f482354096bb92e77e0c563e0"
+            },
+            "static": {
+              "triggers": [],
+              "sinks": [
+                {
+                  "file": "pypdf/filters.py",
+                  "line": 804,
+                  "sink": "subprocess.run",
+                  "capability": "PROCESS_CREATE",
+                  "rule_id": "BEH-PROCESS_EXEC"
+                },
+                {
+                  "file": "pypdf/filters.py",
+                  "line": 774,
+                  "sink": "subprocess.run",
+                  "capability": "PROCESS_CREATE",
+                  "rule_id": "BEH-PROCESS_EXEC"
+                }
+              ],
+              "parse_errors": [],
+              "coverage": "Python AST selected predicates and sensitive sinks; no full symbolic execution",
+              "disabled_optional_sinks": [
+                {
+                  "file": "pypdf/filters.py",
+                  "line": 804,
+                  "sink": "subprocess.run",
+                  "capability": "PROCESS_CREATE",
+                  "rule_id": "BEH-PROCESS_EXEC"
+                },
+                {
+                  "file": "pypdf/filters.py",
+                  "line": 774,
+                  "sink": "subprocess.run",
+                  "capability": "PROCESS_CREATE",
+                  "rule_id": "BEH-PROCESS_EXEC"
+                }
+              ],
+              "guard_evidence": "All PdfReader call sites are enclosed by apply_configuration(jbig2dec_binary=None); decoder methods exit before subprocess execution"
+            },
+            "osv": {
+              "query": {
+                "package": {
+                  "name": "pypdf",
+                  "ecosystem": "PyPI"
+                },
+                "version": "6.19.0"
+              },
+              "retrieved_at": "2026-09-25T21:22:46.091715+00:00",
+              "source": "https://pypi.org/pypi/pypdf/6.19.0/json",
+              "response": {
+                "info": {
+                  "author": null,
+                  "author_email": "Mathieu Fenniak <biziqe@mathieu.fenniak.net>",
+                  "bugtrack_url": null,
+                  "classifiers": [
+                    "Development Status :: 5 - Production/Stable",
+                    "Intended Audience :: Developers",
+                    "Operating System :: OS Independent",
+                    "Programming Language :: Python :: 3",
+                    "Programming Language :: Python :: 3 :: Only",
+                    "Programming Language :: Python :: 3.10",
+                    "Programming Language :: Python :: 3.11",
+                    "Programming Language :: Python :: 3.12",
+                    "Programming Language :: Python :: 3.13",
+                    "Programming Language :: Python :: 3.14",
+                    "Programming Language :: Python :: 3.9",
+                    "Topic :: Software Development :: Libraries :: Python Modules",
+                    "Typing :: Typed"
+                  ],
+                  "description": "[![PyPI version](https://badge.fury.io/py/pypdf.svg)](https://badge.fury.io/py/pypdf)\n[![Python Support](https://img.shields.io/pypi/pyversions/pypdf.svg)](https://pypi.org/project/pypdf/)\n[![](https://img.shields.io/badge/-documentation-green)](https://pypdf.readthedocs.io/en/stable/)\n[![GitHub last commit](https://img.shields.io/github/last-commit/py-pdf/pypdf)](https://github.com/py-pdf/pypdf)\n[![codecov](https://codecov.io/gh/py-pdf/pypdf/branch/main/graph/badge.svg?token=id42cGNZ5Z)](https://codecov.io/gh/py-pdf/pypdf)\n\n# pypdf\n\npypdf is a free and open-source pure-python PDF library capable of splitting,\n[merging](https://pypdf.readthedocs.io/en/stable/user/merging-pdfs.html),\n[cropping, and transforming](https://pypdf.readthedocs.io/en/stable/user/cropping-and-transforming.html)\nthe pages of PDF files. It can also add\ncustom data, viewing options, and\n[passwords](https://pypdf.readthedocs.io/en/stable/user/encryption-decryption.html)\nto PDF files. pypdf can\n[retrieve text](https://pypdf.readthedocs.io/en/stable/user/extract-text.html)\nand\n[metadata](https://pypdf.readthedocs.io/en/stable/user/metadata.html)\nfrom PDFs as well.\n\nSee [pdfly](https://github.com/py-pdf/pdfly) for a CLI application that uses pypdf to interact with PDFs.\n\n## Installation\n\nInstall pypdf using pip:\n\n```\npip install pypdf\n```\n\nFor using pypdf with AES encryption or decryption, install extra dependencies:\n\n```\npip install pypdf[crypto]\n```\n\n> **NOTE**: `pypdf` 3.1.0 and above include significant improvements compared to\n> previous versions. Please refer to [the migration\n> guide](https://pypdf.readthedocs.io/en/latest/user/migration-1-to-2.html) for\n> more information.\n\n## Usage\n\n```python\nfrom pypdf import PdfReader\n\nreader = PdfReader(\"example.pdf\")\nnumber_of_pages = len(reader.pages)\npage = reader.pages[0]\ntext = page.extract_text()\n```\n\npypdf can do a lot more, e.g. splitting, merging, reading and creating annotations, decrypting and encrypting. Check out the\n[documentation](https://pypdf.readthedocs.io/en/stable/) for additional usage\nexamples!\n\nFor questions and answers, visit\n[StackOverflow](https://stackoverflow.com/questions/tagged/pypdf)\n(tagged with [pypdf](https://stackoverflow.com/questions/tagged/pypdf)).\n\n## Contributions\n\nMaintaining pypdf is a collaborative effort. You can support the project by\nwriting documentation, helping to narrow down issues, and submitting code.\nSee the [CONTRIBUTING.md](https://github.com/py-pdf/pypdf/blob/main/CONTRIBUTING.md) file for more information.\n\n### Q&A\n\nThe experience pypdf users have covers the whole range from beginner to expert. You can contribute to the pypdf community by answering questions\non [StackOverflow](https://stackoverflow.com/questions/tagged/pypdf),\nhelping in [discussions](https://github.com/py-pdf/pypdf/discussions),\nand asking users who report issues for [MCVE](https://stackoverflow.com/help/minimal-reproducible-example)'s (Code + example PDF!).\n\n\n### Issues\n\nA good bug ticket includes a MCVE - a minimal complete verifiable example.\nFor pypdf, this means that you must upload a PDF that causes the bug to occur\nas well as the code you're executing with all of the output. Use\n`print(pypdf.__version__)` to tell us which version you're using.\n\n### Code\n\nAll code contributions are welcome, but smaller ones have a better chance to\nget included in a timely manner. Adding unit tests for new features or test\ncases for bugs you've fixed help us to ensure that the Pull Request (PR) is fine.\n\npypdf includes a test suite which can be executed with `pytest`:\n\n```bash\n$ pytest\n===================== test session starts =====================\nplatform linux -- Python 3.6.15, pytest-7.0.1, pluggy-1.0.0\nrootdir: /home/moose/GitHub/Martin/pypdf\nplugins: cov-3.0.0\ncollected 233 items\n\ntests/test_basic_features.py ..                         [  0%]\ntests/test_constants.py .                               [  1%]\ntests/test_filters.py .................x.....           [ 11%]\ntests/test_generic.py ................................. [ 25%]\n.............                                           [ 30%]\ntests/test_javascript.py ..                             [ 31%]\ntests/test_merger.py .                                  [ 32%]\ntests/test_page.py .........................            [ 42%]\ntests/test_pagerange.py ................                [ 49%]\ntests/test_papersizes.py ..................             [ 57%]\ntests/test_reader.py .................................. [ 72%]\n...............                                         [ 78%]\ntests/test_utils.py ....................                [ 87%]\ntests/test_workflows.py ..........                      [ 91%]\ntests/test_writer.py .................                  [ 98%]\ntests/test_xmp.py ...                                   [100%]\n\n========== 232 passed, 1 xfailed, 1 warning in 4.52s ==========\n```\n\n",
+                  "description_content_type": "text/markdown",
+                  "docs_url": null,
+                  "download_url": null,
+                  "downloads": {
+                    "last_day": -1,
+                    "last_month": -1,
+                    "last_week": -1
+                  },
+                  "dynamic": null,
+                  "home_page": null,
+                  "keywords": null,
+                  "license": null,
+                  "license_expression": "BSD-3-Clause",
+                  "license_files": [
+                    "LICENSE"
+                  ],
+                  "maintainer": "stefan6419846",
+                  "maintainer_email": "Martin Thoma <info@martin-thoma.de>",
+                  "name": "pypdf",
+                  "package_url": "https://pypi.org/project/pypdf/",
+                  "platform": null,
+                  "project_url": "https://pypi.org/project/pypdf/",
+                  "project_urls": {
+                    "Bug Reports": "https://github.com/py-pdf/pypdf/issues",
+                    "Changelog": "https://pypdf.readthedocs.io/en/latest/meta/CHANGELOG.html",
+                    "Documentation": "https://pypdf.readthedocs.io/en/latest/",
+                    "Source": "https://github.com/py-pdf/pypdf"
+                  },
+                  "provides_extra": [
+                    "crypto",
+                    "cryptodome",
+                    "dev",
+                    "docs",
+                    "fonts",
+                    "full",
+                    "image",
+                    "rtl-text"
+                  ],
+                  "release_url": "https://pypi.org/project/pypdf/6.19.0/",
+                  "requires_dist": [
+                    "typing_extensions>=4.0; python_version < \"3.11\"",
+                    "cryptography>3.0; extra == \"crypto\"",
+                    "PyCryptodome; extra == \"cryptodome\"",
+                    "flit; extra == \"dev\"",
+                    "pip-tools; extra == \"dev\"",
+                    "pre-commit; extra == \"dev\"",
+                    "pytest-cov; extra == \"dev\"",
+                    "pytest-socket; extra == \"dev\"",
+                    "pytest-timeout; extra == \"dev\"",
+                    "pytest-xdist; extra == \"dev\"",
+                    "wheel; extra == \"dev\"",
+                    "myst_parser; extra == \"docs\"",
+                    "sphinx; extra == \"docs\"",
+                    "sphinx_rtd_theme; extra == \"docs\"",
+                    "fonttools; extra == \"fonts\"",
+                    "arabic-reshaper; extra == \"full\"",
+                    "cryptography>3.0; extra == \"full\"",
+                    "fonttools; extra == \"full\"",
+                    "Pillow>=8.0.0; extra == \"full\"",
+                    "python-bidi; extra == \"full\"",
+                    "Pillow>=8.0.0; extra == \"image\"",
+                    "arabic-reshaper; extra == \"rtl-text\"",
+                    "python-bidi; extra == \"rtl-text\""
+                  ],
+                  "requires_python": ">=3.9",
+                  "summary": "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files",
+                  "version": "6.19.0",
+                  "yanked": false,
+                  "yanked_reason": null
+                },
+                "last_serial": 41123876,
+                "ownership": {
+                  "organization": null,
+                  "roles": [
+                    {
+                      "role": "Owner",
+                      "user": "Martin.Thoma"
+                    },
+                    {
+                      "role": "Owner",
+                      "user": "mfenniak"
+                    },
+                    {
+                      "role": "Owner",
+                      "user": "stefan6419846"
+                    }
+                  ]
+                },
+                "urls": [
+                  {
+                    "comment_text": null,
+                    "core-metadata": {
+                      "sha256": "c4f428636f3cb180014024dfb4414b41b8c75b568ffe4a06beeb5175b311c6b5"
+                    },
+                    "digests": {
+                      "blake2b_256": "3c2cc43c03eaf630435f023f1dc61ec4a4a78951ad5530a62c71cc89bde307b7",
+                      "md5": "68871f5ab365187619c8425da9383474",
+                      "sha256": "7e5d6e730e7dae87d560a2cee218b852f6498c8be61966f3cd02ead971e48d14"
+                    },
+                    "downloads": -1,
+                    "filename": "pypdf-6.19.0-py3-none-any.whl",
+                    "has_sig": false,
+                    "md5_digest": "68871f5ab365187619c8425da9383474",
+                    "packagetype": "bdist_wheel",
+                    "python_version": "py3",
+                    "requires_python": ">=3.9",
+                    "size": 395480,
+                    "upload_time": "2026-09-16T09:32:04",
+                    "upload_time_iso_8601": "2026-09-16T09:32:04.087160Z",
+                    "url": "https://files.pythonhosted.org/packages/3c/2c/c43c03eaf630435f023f1dc61ec4a4a78951ad5530a62c71cc89bde307b7/pypdf-6.19.0-py3-none-any.whl",
+                    "yanked": false,
+                    "yanked_reason": null
+                  },
+                  {
+                    "comment_text": null,
+                    "core-metadata": false,
+                    "digests": {
+                      "blake2b_256": "1fac63d71aaedb59acbcdef491e6ca6469165e3771c9c74358204818fd9bc5a6",
+                      "md5": "de97bcd5104430d9c30f55dd6e85641a",
+                      "sha256": "bbc43aca292369ccc6cbc8a921991ecf2538a3587ab5a116eff06c321d647155"
+                    },
+                    "downloads": -1,
+                    "filename": "pypdf-6.19.0.tar.gz",
+                    "has_sig": false,
+                    "md5_digest": "de97bcd5104430d9c30f55dd6e85641a",
+                    "packagetype": "sdist",
+                    "python_version": "source",
+                    "requires_python": ">=3.9",
+                    "size": 7033266,
+                    "upload_time": "2026-09-16T09:32:05",
+                    "upload_time_iso_8601": "2026-09-16T09:32:05.946618Z",
+                    "url": "https://files.pythonhosted.org/packages/1f/ac/63d71aaedb59acbcdef491e6ca6469165e3771c9c74358204818fd9bc5a6/pypdf-6.19.0.tar.gz",
+                    "yanked": false,
+                    "yanked_reason": null
+                  }
+                ],
+                "vulnerabilities": []
+              },
+              "response_sha256": "993e4e8c728ef9c110de865e4f3049b519feadbf1ce121676dbb65aabe0ee4f6",
+              "caveat": "OSV POST timed out on build host; this is genuine PyPI vulnerability metadata, not an OSV scan",
+              "available": true,
+              "mode": "PYPI ADVISORY METADATA (dated)",
+              "osv_available": false,
+              "osv_error": "OSV unavailable; explicit registry advisory fallback",
+              "vulnerabilities": [],
+              "age_days": 0.74
+            },
+            "runtime": null,
+            "violations": [],
+            "causal_graph": {
+              "nodes": [
+                {
+                  "id": "package",
+                  "label": "pypdf",
+                  "kind": "package"
+                }
+              ],
+              "edges": []
+            },
+            "fast_gate_ms": 430.61,
+            "deep_analysis_ms": 0,
+            "cache_key": "cc8661c96f9bc1ff7b30fcfb15497833198d46158c383d1e2e293bdf831338ed",
+            "reason": "Contract and selected static/advisory checks satisfied",
+            "uncertainty": [],
+            "escalation_reason": "No supported high-risk trigger found; no deep run required"
+          }
+        ],
+        "dependency_tree": {
+          "nodes": [
+            {
+              "id": "pypdf",
+              "version": "6.19.0"
+            }
+          ],
+          "edges": []
+        },
+        "reason": "All locked dependency nodes verified within the declared model",
+        "total_ms": 445.32,
+        "knowledge": {
+          "threat_repo_version": "TR-2026.09.26.001",
+          "digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+          "module_digest": "fddee57c3f5c1ea75ecdc48d3419f1142648aa90b9960f2ff04f814badd385cf",
+          "rules": [
+            {
+              "id": "BEH-DYNAMIC_DOWNLOAD",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-DYNAMIC_EXECUTION",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-FILE_READ",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "LOW"
+            },
+            {
+              "id": "BEH-FILE_WRITE",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "MEDIUM"
+            },
+            {
+              "id": "BEH-NATIVE_EXEC",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-NETWORK_CONNECT",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "MEDIUM"
+            },
+            {
+              "id": "BEH-PERSISTENCE_WRITE",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-PROCESS_EXEC",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-SECRET_READ",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-SENSITIVE_FILE_READ",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Security-sensitive capability; compare scope and project justification before deciding.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "CAP-HTTP-001",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "A justified HTTP client may connect to approved endpoints. Network use alone is not a maliciousness decision.",
+              "severity": "MEDIUM"
+            },
+            {
+              "id": "CAP-PDF-001",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Reading supplied PDFs and temporary files is justified. Secrets, persistence and arbitrary subprocess/network access are not.",
+              "severity": "MEDIUM"
+            },
+            {
+              "id": "PKG-LAB-001",
+              "version": 1,
+              "source_id": "SRC-LAB",
+              "description": "This is an inert controlled reproduction, not a real malicious package. A name match is supporting context only.",
+              "severity": "MEDIUM"
+            },
+            {
+              "id": "BEH-CRED-PROC-001",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-DOWNLOAD-PROC-001",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-FILE-NET-001",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-SECRET-NET-001",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "BEH-SSH-NET-001",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Correlate source and sink with causal evidence and project permissions; co-occurrence alone is not malware.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-CLOUD",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-DELAY",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-ENV",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-FILE",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-HOST",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-METADATA",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-PLATFORM",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-RESPONSE",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-SANDBOX",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-TIME",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "TRIG-USER",
+              "version": 1,
+              "source_id": "SRC-ASENT",
+              "description": "Prioritize when predicate controls a security-sensitive sink. Unsupported activation remains unresolved.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "PYSEC-2026-3005.0",
+              "version": 1,
+              "source_id": "SRC-OSV",
+              "description": "Crafted PDF cross-reference metadata can prevent the reader from terminating. Fixed in 6.7.2.",
+              "severity": "LOW"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-ASENT",
+              "category": "sources",
+              "name": "ASENT curated program-analysis knowledge",
+              "severity": "INFO",
+              "description": "Bounded patterns and policies from the supplied project designs. Research hypotheses, not validated prevalence claims.",
+              "source_id": "SRC-ASENT",
+              "enabled": true,
+              "version": 1,
+              "updated_at": "2026-09-26T00:00:00+00:00",
+              "data": {
+                "source_type": "ASENT curated rule",
+                "reference": "docs/implementation-notes.md",
+                "trust_class": "curated",
+                "license_note": "Project-authored knowledge; inspect and evaluate",
+                "retrieved_at": "2026-09-26T00:00:00+00:00"
+              }
+            },
+            {
+              "id": "SRC-LAB",
+              "category": "sources",
+              "name": "InvoiceHub controlled reproduction",
+              "severity": "INFO",
+              "description": "Only synthetic conditions and fake canary bytes; not evidence of an observed malicious package selection.",
+              "source_id": "SRC-LAB",
+              "enabled": true,
+              "version": 1,
+              "updated_at": "2026-09-26T00:00:00+00:00",
+              "data": {
+                "source_type": "controlled reproduction",
+                "reference": "scenarios/cavr_controlled/invoice_pdf_lab.py",
+                "trust_class": "controlled",
+                "license_note": "Project-authored inert fixture",
+                "retrieved_at": "2026-09-26T00:00:00+00:00"
+              }
+            },
+            {
+              "id": "SRC-OSV",
+              "category": "sources",
+              "name": "OSV public vulnerability data",
+              "severity": "INFO",
+              "description": "Imported responses retain query, source URL, retrieval date and digest.",
+              "source_id": "SRC-OSV",
+              "enabled": true,
+              "version": 1,
+              "updated_at": "2026-09-26T00:00:00+00:00",
+              "data": {
+                "source_type": "OSV",
+                "reference": "https://google.github.io/osv.dev/api/",
+                "trust_class": "public advisory",
+                "license_note": "Advisories retain upstream source/license; attribution preserved",
+                "retrieved_at": "2026-09-26T00:00:00+00:00"
+              }
+            }
+          ],
+          "role": "Supporting reusable knowledge, combined with observed evidence and independent project obligations"
+        }
+      },
+      "created_at": "2026-09-26T15:12:51.563884+00:00",
+      "duration_ms": 458.09,
+      "reused_from": null,
+      "content_hash": "bab1b9512f54fc823b92279b464bff38a8c87a3d52d00e77375a63240020eed3",
+      "integrity_valid": true,
+      "stale": false
+    },
+    {
+      "evidence_id": "7dd713857645492d859278ef9e9482db",
+      "run_id": "71edccfa7432",
+      "analyzer": "SATRA",
+      "analyzer_version": "1.0.0",
+      "threat_repo_version": "TR-2026.09.26.001",
+      "threat_repo_digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+      "threat_module_digest": "7cc9d41b731f4be959a93d82ac194f66b6015b3aef8df98b4a45b29d6bff5686",
+      "candidate_snapshot": "08332133447e725ac355297e8de76faeb66d4255790019ce827cca225e87ef73",
+      "input_hash": "15f723f0abb846129658650b0836ae5da5c2cf6247aed9c9bc45767b6ab93552",
+      "status": "ACCEPT",
+      "blocking": false,
+      "residual_uncertainty": [
+        "Bounded authentication, ownership, admin, upload and parameterized-login checks; other vulnerability families are not exhaustively covered"
+      ],
+      "affected_files": [
+        "SRS.md",
+        "dependencies.lock.json",
+        "plan.md",
+        "policy.json",
+        "requirements.txt",
+        "app/__init__.py",
+        "app/main.py",
+        "app/pdf_adapter.py",
+        "app/security.py",
+        "tests/conftest.py",
+        "tests/test_archive.py",
+        "tests/test_functional.py",
+        "tests/test_security.py"
+      ],
+      "evidence_refs": [
+        "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA"
+      ],
+      "details": {
+        "regions": [
+          {
+            "file": "app/main.py",
+            "function": "password_hash",
+            "start": 22,
+            "end": 23,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "input handling"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "create_app",
+            "start": 26,
+            "end": 143,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "input handling"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "db",
+            "start": 36,
+            "end": 39,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "input handling"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "current_user",
+            "start": 52,
+            "end": 59,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "register",
+            "start": 63,
+            "end": 70,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "input handling"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "login",
+            "start": 72,
+            "end": 79,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "me",
+            "start": 81,
+            "end": 81,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "input handling"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "upload",
+            "start": 83,
+            "end": 95,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "input handling"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "list_invoices",
+            "start": 97,
+            "end": 100,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "get_record",
+            "start": 101,
+            "end": 104,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "input handling"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "get_invoice",
+            "start": 106,
+            "end": 109,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "delete_invoice",
+            "start": 111,
+            "end": 116,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "admin_list",
+            "start": 118,
+            "end": 121,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "admin_delete",
+            "start": 123,
+            "end": 125,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/main.py",
+            "function": "archive_old_invoices",
+            "start": 127,
+            "end": 142,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/pdf_adapter.py",
+            "function": "extract_invoice_text",
+            "start": 5,
+            "end": 11,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/security.py",
+            "function": "can_access_invoice",
+            "start": 2,
+            "end": 3,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          },
+          {
+            "file": "app/security.py",
+            "function": "is_admin",
+            "start": 6,
+            "end": 7,
+            "changed": false,
+            "reason": "Mandatory security authority/route region",
+            "families": [
+              "authorization",
+              "authentication"
+            ]
+          }
+        ],
+        "diff": "",
+        "dictionary": [
+          {
+            "id": "AUTHZ.IDOR.001",
+            "cwe": "CWE-639",
+            "family": "authorization / object ownership",
+            "applicability": [
+              "FastAPI",
+              "InvoiceHub"
+            ],
+            "preconditions": [
+              "object ID from request",
+              "authenticated user",
+              "invoice ownership"
+            ],
+            "expected_secure_behavior": "HTTP 403 and no state change",
+            "pytest_template": "trusted_security.py::test_nonowner_denied",
+            "input_classes": [
+              "owner",
+              "nonowner",
+              "unauthenticated",
+              "administrator"
+            ],
+            "counterfactual_template": "bypass can_access_invoice",
+            "validation_rules": [
+              "parses",
+              "secure baseline passes",
+              "valid mutant killed by assertion",
+              "repeatable",
+              "local",
+              "bounded runtime"
+            ],
+            "version": 1,
+            "implementation": "executable bounded InvoiceHub template",
+            "source_id": "SRC-OWASP"
+          },
+          {
+            "id": "AUTHN.001",
+            "cwe": "CWE-306",
+            "family": "authentication",
+            "applicability": [
+              "FastAPI",
+              "InvoiceHub"
+            ],
+            "preconditions": [
+              "private invoice route"
+            ],
+            "expected_secure_behavior": "HTTP 401 without token",
+            "pytest_template": "trusted_security.py::test_unauthenticated_denied",
+            "input_classes": [
+              "missing bearer token"
+            ],
+            "counterfactual_template": null,
+            "validation_rules": [
+              "parses",
+              "baseline passes",
+              "local"
+            ],
+            "version": 1,
+            "implementation": "executable bounded InvoiceHub template",
+            "source_id": "SRC-OWASP"
+          },
+          {
+            "id": "AUTHZ.ADMIN.001",
+            "cwe": "CWE-862",
+            "family": "privilege separation",
+            "applicability": [
+              "FastAPI",
+              "InvoiceHub"
+            ],
+            "preconditions": [
+              "administrator route"
+            ],
+            "expected_secure_behavior": "HTTP 403 for normal user",
+            "pytest_template": "trusted_security.py::test_normal_user_not_admin",
+            "input_classes": [
+              "normal user",
+              "admin"
+            ],
+            "counterfactual_template": null,
+            "validation_rules": [
+              "baseline passes",
+              "local"
+            ],
+            "version": 1,
+            "implementation": "executable bounded InvoiceHub template",
+            "source_id": "SRC-OWASP"
+          },
+          {
+            "id": "INPUT.PDF.001",
+            "cwe": "CWE-434",
+            "family": "unsafe upload",
+            "applicability": [
+              "FastAPI",
+              "InvoiceHub"
+            ],
+            "preconditions": [
+              "PDF upload route"
+            ],
+            "expected_secure_behavior": "Reject non-PDF content",
+            "pytest_template": "trusted_security.py::test_reject_non_pdf",
+            "input_classes": [
+              "text masquerading as PDF"
+            ],
+            "counterfactual_template": null,
+            "validation_rules": [
+              "baseline passes"
+            ],
+            "version": 1,
+            "implementation": "executable bounded InvoiceHub template",
+            "source_id": "SRC-OWASP"
+          }
+        ],
+        "contract": {
+          "rule_id": "AUTHZ.IDOR.001",
+          "version": 1,
+          "subject": "authenticated normal user",
+          "action": "GET invoice",
+          "resource": "invoice owned by another user",
+          "expected_status": 403,
+          "state_effect": "none",
+          "authority": "SRS.md#FR-03",
+          "route": "GET /invoices/{invoice_id}",
+          "authority_sources": [
+            "SRS.md#FR-03",
+            "policy.json#ownership",
+            "trusted baseline app/main.py"
+          ],
+          "srs_digest": "45811d79f5931f932b74dd36694d6962ea67b8b567867a120bd067a192c1db53",
+          "policy_digest": "e963284e836a23f8086092bb77a216615de986a97bc3c718dc5709d8f4faaa8e",
+          "preconditions": [
+            "authenticated normal user",
+            "existing invoice owned by another user"
+          ],
+          "counterfactual": "bypass can_access_invoice ownership guard",
+          "scope": [
+            "app/main.py",
+            "app/security.py"
+          ],
+          "digest": "5a267c7098cff2d7ab2ca4aa0d4c6b414d5abbc793394eefcab6402c2c6221f5"
+        },
+        "static": {
+          "available": true,
+          "tool": "Bandit",
+          "exit_code": 1,
+          "findings": [
+            {
+              "rule": "B108",
+              "severity": "MEDIUM",
+              "confidence": "MEDIUM",
+              "file": "/tmp/asent-final-http-c3g4vhv4/runtime/workspaces/71edccfa7432/snapshot-1/app/main.py",
+              "line": 27,
+              "message": "Probable insecure usage of temp file/directory."
+            },
+            {
+              "rule": "B105",
+              "severity": "LOW",
+              "confidence": "MEDIUM",
+              "file": "/tmp/asent-final-http-c3g4vhv4/runtime/workspaces/71edccfa7432/snapshot-1/app/main.py",
+              "line": 79,
+              "message": "Possible hardcoded password: 'bearer'"
+            }
+          ]
+        },
+        "oracle": {
+          "accepted": true,
+          "diagnosis": "PRESERVED_WITHIN_MODEL",
+          "reason": "Passes secure baseline twice and kills valid ownership bypass",
+          "valid_counterfactual": true,
+          "baseline_original_killed": true,
+          "mutant_operator": "AST replace can_access_invoice body with return True",
+          "counterfactual_scope": "ownership read + delete"
+        },
+        "adaptive": {
+          "available": false,
+          "reason": "Optional Ollama disabled; set ASENT_OLLAMA_MODEL",
+          "validations": []
+        },
+        "executions": {
+          "trusted_baseline": {
+            "available": true,
+            "exit_code": 0,
+            "tests": [
+              {
+                "name": "test_owner_can_read",
+                "classname": "assurance.test_functional",
+                "status": "PASS",
+                "seconds": 0.162,
+                "message": ""
+              },
+              {
+                "name": "test_admin_view",
+                "classname": "assurance.test_functional",
+                "status": "PASS",
+                "seconds": 0.009,
+                "message": ""
+              },
+              {
+                "name": "test_registration_login",
+                "classname": "assurance.test_functional",
+                "status": "PASS",
+                "seconds": 0.043,
+                "message": ""
+              },
+              {
+                "name": "test_archive_boundary_and_ownership",
+                "classname": "assurance.test_functional",
+                "status": "PASS",
+                "seconds": 0.135,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_denied",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.173,
+                "message": ""
+              },
+              {
+                "name": "test_unauthenticated_denied",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.005,
+                "message": ""
+              },
+              {
+                "name": "test_normal_user_not_admin",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_cannot_delete",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.004,
+                "message": ""
+              },
+              {
+                "name": "test_reject_non_pdf",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_sql_login_payload",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              }
+            ],
+            "passed": 10,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "duration_ms": 1216.13,
+            "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+            "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+            "stdout": "..........                                                               [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n10 passed, 1 warning in 0.56s\n",
+            "stderr": "",
+            "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/trusted_baseline/junit.xml",
+            "junit_sha256": "6ba6b5a828c34f915ac3ca1f1a236f3a79c6d62fbab0ac8f636f39e1848a6886"
+          },
+          "trusted_candidate": {
+            "available": true,
+            "exit_code": 0,
+            "tests": [
+              {
+                "name": "test_owner_can_read",
+                "classname": "assurance.test_functional",
+                "status": "PASS",
+                "seconds": 0.164,
+                "message": ""
+              },
+              {
+                "name": "test_admin_view",
+                "classname": "assurance.test_functional",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_registration_login",
+                "classname": "assurance.test_functional",
+                "status": "PASS",
+                "seconds": 0.046,
+                "message": ""
+              },
+              {
+                "name": "test_archive_boundary_and_ownership",
+                "classname": "assurance.test_functional",
+                "status": "PASS",
+                "seconds": 0.13,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_denied",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.137,
+                "message": ""
+              },
+              {
+                "name": "test_unauthenticated_denied",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_normal_user_not_admin",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_cannot_delete",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.005,
+                "message": ""
+              },
+              {
+                "name": "test_reject_non_pdf",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_sql_login_payload",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              }
+            ],
+            "passed": 10,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "duration_ms": 1007.27,
+            "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+            "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+            "stdout": "..........                                                               [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n10 passed, 1 warning in 0.52s\n",
+            "stderr": "",
+            "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/trusted_candidate/junit.xml",
+            "junit_sha256": "ed9092ceb1165cc2b0d2c68d0ebb84a75fd88015d38265f33bf7d03dc5a8afa4"
+          },
+          "ordinary_candidate": {
+            "available": true,
+            "exit_code": 0,
+            "tests": [
+              {
+                "name": "test_archive_boundary_and_ownership",
+                "classname": "tests.test_archive",
+                "status": "PASS",
+                "seconds": 0.152,
+                "message": ""
+              },
+              {
+                "name": "test_owner_can_read",
+                "classname": "tests.test_functional",
+                "status": "PASS",
+                "seconds": 0.139,
+                "message": ""
+              },
+              {
+                "name": "test_admin_view",
+                "classname": "tests.test_functional",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_registration_login",
+                "classname": "tests.test_functional",
+                "status": "PASS",
+                "seconds": 0.047,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_denied",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.153,
+                "message": ""
+              },
+              {
+                "name": "test_unauthenticated_denied",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_normal_user_not_admin",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_cannot_delete",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.005,
+                "message": ""
+              },
+              {
+                "name": "test_reject_non_pdf",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_sql_login_payload",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              }
+            ],
+            "passed": 10,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "duration_ms": 981.38,
+            "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+            "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+            "stdout": "..........                                                               [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n10 passed, 1 warning in 0.53s\n",
+            "stderr": "",
+            "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/ordinary_candidate/junit.xml",
+            "junit_sha256": "a71c153fc8795461ead5f89c3fed191c9042db5a42dba8e5cd22ab4970fdbcc4"
+          },
+          "trusted_counterfactual": {
+            "available": true,
+            "exit_code": 1,
+            "tests": [
+              {
+                "name": "test_nonowner_denied",
+                "classname": "assurance.test_security",
+                "status": "FAIL",
+                "seconds": 0.169,
+                "message": "case = (<starlette.testclient.TestClient object at 0x7fb4369fa7e0>, {'Authorization': 'Bearer gy46iqEIxUp6D1jNIeA5wdocCX4v3WL...Nzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'}, {'Authorization': 'Bearer clmJPG41IeJ6GybBRbwAwVkgPIUezimYP-4My8OgK-c'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\nassurance/test_security.py:5: AssertionError"
+              },
+              {
+                "name": "test_unauthenticated_denied",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_normal_user_not_admin",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_cannot_delete",
+                "classname": "assurance.test_security",
+                "status": "FAIL",
+                "seconds": 0.004,
+                "message": "case = (<starlette.testclient.TestClient object at 0x7fb4369fa7e0>, {'Authorization': 'Bearer gy46iqEIxUp6D1jNIeA5wdocCX4v3WL...Nzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'}, {'Authorization': 'Bearer clmJPG41IeJ6GybBRbwAwVkgPIUezimYP-4My8OgK-c'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer wnrNzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7fb4369fa7e0>.delete\n\nassurance/test_security.py:18: AssertionError"
+              },
+              {
+                "name": "test_reject_non_pdf",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.006,
+                "message": ""
+              },
+              {
+                "name": "test_sql_login_payload",
+                "classname": "assurance.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              }
+            ],
+            "passed": 4,
+            "failed": 2,
+            "errors": 0,
+            "skipped": 0,
+            "duration_ms": 729.72,
+            "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+            "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+            "stdout": "F..F..                                                                   [100%]\n=================================== FAILURES ===================================\n_____________________________ test_nonowner_denied _____________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7fb4369fa7e0>, {'Authorization': 'Bearer gy46iqEIxUp6D1jNIeA5wdocCX4v3WL...Nzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'}, {'Authorization': 'Bearer clmJPG41IeJ6GybBRbwAwVkgPIUezimYP-4My8OgK-c'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\nassurance/test_security.py:5: AssertionError\n_________________________ test_nonowner_cannot_delete __________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7fb4369fa7e0>, {'Authorization': 'Bearer gy46iqEIxUp6D1jNIeA5wdocCX4v3WL...Nzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'}, {'Authorization': 'Bearer clmJPG41IeJ6GybBRbwAwVkgPIUezimYP-4My8OgK-c'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer wnrNzr8YNGlaTJN3bfNvLVPuOZ38Re2EHzeCwr9Mobk'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7fb4369fa7e0>.delete\n\nassurance/test_security.py:18: AssertionError\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED assurance/test_security.py::test_nonowner_denied - assert 200 == 403\nFAILED assurance/test_security.py::test_nonowner_cannot_delete - AssertionErr...\n2 failed, 4 passed, 1 warning in 0.22s\n",
+            "stderr": "",
+            "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/trusted_counterfactual/junit.xml",
+            "junit_sha256": "c2ab7d52ab1421d8f76fefcd4de394ea4467f590f34026b6492efbf81010dc9b"
+          },
+          "baseline_oracle_mutant": {
+            "available": true,
+            "exit_code": 1,
+            "tests": [
+              {
+                "name": "test_nonowner_denied",
+                "classname": "tests.test_security",
+                "status": "FAIL",
+                "seconds": 0.163,
+                "message": "case = (<starlette.testclient.TestClient object at 0x7f724d5f2600>, {'Authorization': 'Bearer HIx3CRFO-KQOW255u7ybPFDug_GRjll...mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'}, {'Authorization': 'Bearer Shjhf_JiTpvYAGYDoLS4KJzcY6Q4pZjb-6jYeJE46R0'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests/test_security.py:5: AssertionError"
+              },
+              {
+                "name": "test_unauthenticated_denied",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_normal_user_not_admin",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.004,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_cannot_delete",
+                "classname": "tests.test_security",
+                "status": "FAIL",
+                "seconds": 0.004,
+                "message": "case = (<starlette.testclient.TestClient object at 0x7f724d5f2600>, {'Authorization': 'Bearer HIx3CRFO-KQOW255u7ybPFDug_GRjll...mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'}, {'Authorization': 'Bearer Shjhf_JiTpvYAGYDoLS4KJzcY6Q4pZjb-6jYeJE46R0'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer Mw-mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7f724d5f2600>.delete\n\ntests/test_security.py:18: AssertionError"
+              },
+              {
+                "name": "test_reject_non_pdf",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.004,
+                "message": ""
+              },
+              {
+                "name": "test_sql_login_payload",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              }
+            ],
+            "passed": 4,
+            "failed": 2,
+            "errors": 0,
+            "skipped": 0,
+            "duration_ms": 718.42,
+            "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+            "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+            "stdout": "F..F..                                                                   [100%]\n=================================== FAILURES ===================================\n_____________________________ test_nonowner_denied _____________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7f724d5f2600>, {'Authorization': 'Bearer HIx3CRFO-KQOW255u7ybPFDug_GRjll...mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'}, {'Authorization': 'Bearer Shjhf_JiTpvYAGYDoLS4KJzcY6Q4pZjb-6jYeJE46R0'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests/test_security.py:5: AssertionError\n_________________________ test_nonowner_cannot_delete __________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7f724d5f2600>, {'Authorization': 'Bearer HIx3CRFO-KQOW255u7ybPFDug_GRjll...mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'}, {'Authorization': 'Bearer Shjhf_JiTpvYAGYDoLS4KJzcY6Q4pZjb-6jYeJE46R0'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer Mw-mKjkaQ_LlgkS2CODRV-654dqzdeVafNSn_KS1cEY'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7f724d5f2600>.delete\n\ntests/test_security.py:18: AssertionError\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED tests/test_security.py::test_nonowner_denied - assert 200 == 403\nFAILED tests/test_security.py::test_nonowner_cannot_delete - AssertionError: ...\n2 failed, 4 passed, 1 warning in 0.21s\n",
+            "stderr": "",
+            "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/baseline_oracle_mutant/junit.xml",
+            "junit_sha256": "3b349d36063196106556580b8969497c569ba63cc39d949c0c1ee64d219eb4b6"
+          },
+          "test_on_secure_baseline": {
+            "available": true,
+            "exit_code": 0,
+            "tests": [
+              {
+                "name": "test_nonowner_denied",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.171,
+                "message": ""
+              },
+              {
+                "name": "test_unauthenticated_denied",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_normal_user_not_admin",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_cannot_delete",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.006,
+                "message": ""
+              },
+              {
+                "name": "test_reject_non_pdf",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.004,
+                "message": ""
+              },
+              {
+                "name": "test_sql_login_payload",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              }
+            ],
+            "passed": 6,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "duration_ms": 794.28,
+            "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+            "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+            "stdout": "......                                                                   [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n6 passed, 1 warning in 0.21s\n",
+            "stderr": "",
+            "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/test_on_secure_baseline/junit.xml",
+            "junit_sha256": "db835acb5fe48da3eb11fcd3716a063a073c8781e6c99dca576d9a8dcb474c4f"
+          },
+          "test_on_counterfactual": {
+            "available": true,
+            "exit_code": 1,
+            "tests": [
+              {
+                "name": "test_nonowner_denied",
+                "classname": "tests.test_security",
+                "status": "FAIL",
+                "seconds": 0.153,
+                "message": "case = (<starlette.testclient.TestClient object at 0x7f679b7daa50>, {'Authorization': 'Bearer AdBXkufqA-cuBOShqMARvw3YCTo1-iH...2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'}, {'Authorization': 'Bearer 2MTlOJ17U-nIpn92-RdHXXbFO_zY68a7XTcimDE9Q9U'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests/test_security.py:5: AssertionError"
+              },
+              {
+                "name": "test_unauthenticated_denied",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_normal_user_not_admin",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_cannot_delete",
+                "classname": "tests.test_security",
+                "status": "FAIL",
+                "seconds": 0.003,
+                "message": "case = (<starlette.testclient.TestClient object at 0x7f679b7daa50>, {'Authorization': 'Bearer AdBXkufqA-cuBOShqMARvw3YCTo1-iH...2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'}, {'Authorization': 'Bearer 2MTlOJ17U-nIpn92-RdHXXbFO_zY68a7XTcimDE9Q9U'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer Wgj2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7f679b7daa50>.delete\n\ntests/test_security.py:18: AssertionError"
+              },
+              {
+                "name": "test_reject_non_pdf",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.004,
+                "message": ""
+              },
+              {
+                "name": "test_sql_login_payload",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              }
+            ],
+            "passed": 4,
+            "failed": 2,
+            "errors": 0,
+            "skipped": 0,
+            "duration_ms": 714.57,
+            "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+            "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+            "stdout": "F..F..                                                                   [100%]\n=================================== FAILURES ===================================\n_____________________________ test_nonowner_denied _____________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7f679b7daa50>, {'Authorization': 'Bearer AdBXkufqA-cuBOShqMARvw3YCTo1-iH...2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'}, {'Authorization': 'Bearer 2MTlOJ17U-nIpn92-RdHXXbFO_zY68a7XTcimDE9Q9U'}, 1)\n\n    def test_nonowner_denied(case):\n        c,a,b,admin,i=case\n        before=c.get('/invoices',headers=a).json()\n        response=c.get(f'/invoices/{i}',headers=b)\n>       assert response.status_code==403\nE       assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests/test_security.py:5: AssertionError\n_________________________ test_nonowner_cannot_delete __________________________\n\ncase = (<starlette.testclient.TestClient object at 0x7f679b7daa50>, {'Authorization': 'Bearer AdBXkufqA-cuBOShqMARvw3YCTo1-iH...2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'}, {'Authorization': 'Bearer 2MTlOJ17U-nIpn92-RdHXXbFO_zY68a7XTcimDE9Q9U'}, 1)\n\n    def test_nonowner_cannot_delete(case):\n        c,a,b,admin,i=case\n>       assert c.delete(f'/invoices/{i}',headers=b).status_code==403\nE       AssertionError: assert 200 == 403\nE        +  where 200 = <Response [200 OK]>.status_code\nE        +    where <Response [200 OK]> = delete('/invoices/1', headers={'Authorization': 'Bearer Wgj2pDGaeEmkY4t80XpEGufy7zASFj-oWX0Gc9jmH_Q'})\nE        +      where delete = <starlette.testclient.TestClient object at 0x7f679b7daa50>.delete\n\ntests/test_security.py:18: AssertionError\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED tests/test_security.py::test_nonowner_denied - assert 200 == 403\nFAILED tests/test_security.py::test_nonowner_cannot_delete - AssertionError: ...\n2 failed, 4 passed, 1 warning in 0.20s\n",
+            "stderr": "",
+            "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/test_on_counterfactual/junit.xml",
+            "junit_sha256": "8442b09b87fc28052a3c511ad250eb57e39407432c3e1e7447d3a330f8c9089f"
+          },
+          "test_baseline_repeat": {
+            "available": true,
+            "exit_code": 0,
+            "tests": [
+              {
+                "name": "test_nonowner_denied",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.156,
+                "message": ""
+              },
+              {
+                "name": "test_unauthenticated_denied",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.003,
+                "message": ""
+              },
+              {
+                "name": "test_normal_user_not_admin",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              },
+              {
+                "name": "test_nonowner_cannot_delete",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.006,
+                "message": ""
+              },
+              {
+                "name": "test_reject_non_pdf",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.005,
+                "message": ""
+              },
+              {
+                "name": "test_sql_login_payload",
+                "classname": "tests.test_security",
+                "status": "PASS",
+                "seconds": 0.002,
+                "message": ""
+              }
+            ],
+            "passed": 6,
+            "failed": 0,
+            "errors": 0,
+            "skipped": 0,
+            "duration_ms": 635.0,
+            "backend": "HASH_PINNED_BUILTIN_SUBPROCESS",
+            "isolation": "Known bundled sources only; isolated temp workspace, sanitized environment, resource limits and network/process audit restrictions; not an arbitrary-code sandbox",
+            "stdout": "......                                                                   [100%]\n=============================== warnings summary ===============================\n../../../workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/30a3e7f71237/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n6 passed, 1 warning in 0.19s\n",
+            "stderr": "",
+            "junit_path": "/tmp/asent-final-http-c3g4vhv4/runtime/evidence/71edccfa7432/1-analysis-SATRA/test_baseline_repeat/junit.xml",
+            "junit_sha256": "d08d012f3a73336b4fc8baae4de0a6cabee9b8d297e6a6d296dd8aaf95edc636"
+          }
+        },
+        "findings": [],
+        "reason": "Independent contract tests pass and the security oracle discriminates a valid counterfactual",
+        "knowledge": {
+          "threat_repo_version": "TR-2026.09.26.001",
+          "digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+          "module_digest": "7cc9d41b731f4be959a93d82ac194f66b6015b3aef8df98b4a45b29d6bff5686",
+          "rules": [
+            {
+              "id": "AUTHN.001",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "HTTP 401 without token",
+              "severity": "HIGH"
+            },
+            {
+              "id": "AUTHZ.ADMIN.001",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "HTTP 403 for normal user",
+              "severity": "HIGH"
+            },
+            {
+              "id": "AUTHZ.IDOR.001",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "HTTP 403 and no state change",
+              "severity": "HIGH"
+            },
+            {
+              "id": "INPUT.PDF.001",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "Reject non-PDF content",
+              "severity": "HIGH"
+            },
+            {
+              "id": "SATRA-CMD",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "SATRA-CSRF",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "SATRA-DESER",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "SATRA-PATH",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "SATRA-SQL",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "SATRA-SSRF",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+              "severity": "HIGH"
+            },
+            {
+              "id": "SATRA-XSS",
+              "version": 1,
+              "source_id": "SRC-OWASP",
+              "description": "Bounded family knowledge; dynamic coverage is not claimed for this family.",
+              "severity": "HIGH"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-OWASP",
+              "category": "sources",
+              "name": "OWASP secure coding with AI guidance",
+              "severity": "INFO",
+              "description": "Independent security tests and validation of generated work.",
+              "source_id": "SRC-OWASP",
+              "enabled": true,
+              "version": 1,
+              "updated_at": "2026-09-26T00:00:00+00:00",
+              "data": {
+                "source_type": "public tool",
+                "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Coding_with_AI_Cheat_Sheet.html",
+                "trust_class": "public guidance",
+                "license_note": "Original ASENT test templates; OWASP source cited",
+                "retrieved_at": "2026-09-26T00:00:00+00:00"
+              }
+            }
+          ],
+          "role": "Supporting reusable knowledge, combined with observed evidence and independent project obligations"
+        }
+      },
+      "created_at": "2026-09-26T15:12:58.237452+00:00",
+      "duration_ms": 7131.33,
+      "reused_from": null,
+      "content_hash": "b9ed88609d7990ea2f9d780c29afd9cc7357f13151f2a116f48b1d0b85a9b1ec",
+      "integrity_valid": true,
+      "stale": false
+    }
+  ],
+  "threat_repository": {
+    "schema_version": "asent.threat-repository.v1",
+    "revision": 1,
+    "version": "TR-2026.09.26.001",
+    "digest": "392eb4455aa9fa6f7079d73988f3992918abdb75252f2c1d812d54f9829e5d00",
+    "rule_set_digest": "54ae0e81c0d295fd2fb75819a2fec186e5f8fb33543ce416e8cb1967ae2bf76d",
+    "updated_at": "2026-09-26T15:12:35.344204+00:00",
+    "module_digests": {
+      "CAVR": "fddee57c3f5c1ea75ecdc48d3419f1142648aa90b9960f2ff04f814badd385cf",
+      "SATRA": "7cc9d41b731f4be959a93d82ac194f66b6015b3aef8df98b4a45b29d6bff5686",
+      "SABLE": "527350add0b27d0d176dc7e839c85f27945ec07c76ffa26e4e33e09301c0cb31"
+    }
+  },
+  "chain_valid": true,
+  "event_count": 44,
+  "bounded_claim": "Applicable supported obligations only. Source labels distinguish controlled demonstrations from observed agent events. No benchmark superiority or universal safety claim."
+}

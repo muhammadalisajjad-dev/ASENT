@@ -1,0 +1,106 @@
+[
+  {
+    "id": "safe",
+    "title": "Normal first build",
+    "subtitle": "A legitimate PDF dependency, intact ownership and least privilege.",
+    "source": "NORMAL SAFE CASE",
+    "group": "Normal development",
+    "expected": {
+      "CAVR": "VERIFIED",
+      "SATRA": "ACCEPT",
+      "SABLE": "PRESERVED"
+    },
+    "ground_truth": "supported obligations intact"
+  },
+  {
+    "id": "satra_weak",
+    "title": "The green test that misses a breach",
+    "subtitle": "The implementation is secure, but a weakened oracle survives an ownership bypass.",
+    "source": "CONTROLLED REPRODUCTION",
+    "group": "Application security",
+    "expected": {
+      "SATRA": "REJECT"
+    },
+    "ground_truth": "weak assertion"
+  },
+  {
+    "id": "satra_bypass",
+    "title": "Ownership regression",
+    "subtitle": "An isolated authorization bypass exposes another user\u2019s invoice.",
+    "source": "CONTROLLED REPRODUCTION",
+    "group": "Application security",
+    "expected": {
+      "SATRA": "REJECT"
+    },
+    "ground_truth": "ownership bypass"
+  },
+  {
+    "id": "sable_preserved",
+    "title": "Storage refactor \u00b7 preserved",
+    "subtitle": "Move active invoices into a storage module and add archival.",
+    "source": "NORMAL SAFE CASE",
+    "group": "Infrastructure continuity",
+    "expected": {
+      "SABLE": "PRESERVED"
+    },
+    "ground_truth": "correct successor binding"
+  },
+  {
+    "id": "sable_regressed",
+    "title": "Storage refactor \u00b7 wrong binding",
+    "subtitle": "The role has precise permissions, attached to the archive instead of the active asset.",
+    "source": "CONTROLLED REPRODUCTION",
+    "group": "Infrastructure continuity",
+    "expected": {
+      "SABLE": "REGRESSED"
+    },
+    "ground_truth": "wrong asset"
+  },
+  {
+    "id": "sable_unknown",
+    "title": "Storage refactor \u00b7 ambiguous",
+    "subtitle": "Two successors carry conflicting, equally strong continuity evidence.",
+    "source": "CONTROLLED REPRODUCTION",
+    "group": "Infrastructure continuity",
+    "expected": {
+      "SABLE": "UNKNOWN"
+    },
+    "ground_truth": "underdetermined correspondence"
+  },
+  {
+    "id": "sable_widened",
+    "title": "Storage refactor \u00b7 widened",
+    "subtitle": "The correct active asset is selected, but s3:* exceeds the baseline obligation.",
+    "source": "CONTROLLED REPRODUCTION",
+    "group": "Infrastructure continuity",
+    "expected": {
+      "SABLE": "REGRESSED"
+    },
+    "ground_truth": "privilege widening"
+  },
+  {
+    "id": "cavr_canary",
+    "title": "Dormant capability violation",
+    "subtitle": "A pinned inert laboratory package reaches a loopback canary only after activation.",
+    "source": "CONTROLLED REPRODUCTION",
+    "group": "Dependency trust",
+    "expected": {
+      "CAVR": "REJECTED"
+    },
+    "ground_truth": "unexpected canary/network behavior"
+  },
+  {
+    "id": "cross_module",
+    "title": "Repair invalidates earlier evidence",
+    "subtitle": "Replace the lab adapter; observe SATRA become stale and run again.",
+    "source": "CONTROLLED REPRODUCTION",
+    "group": "Integrated assurance",
+    "expected": {
+      "CAVR": "VERIFIED",
+      "SATRA": "ACCEPT",
+      "SABLE": "PRESERVED"
+    },
+    "ground_truth": "verified replacement with rerouting",
+    "auto_repair": true
+  }
+]

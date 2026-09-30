@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-09-26T15:17:36.601301+00:00",
+  "tools": {
+    "git": {
+      "available": true,
+      "path": "/usr/local/bin/git"
+    },
+    "strace": {
+      "available": false,
+      "path": "/usr/bin/strace",
+      "installed": true,
+      "reason": "/usr/bin/strace: test_ptrace_get_syscall_info: PTRACE_TRACEME: Operation not permitted\n/usr/bin/strace: ptrace(PTRACE_TRACEME, ...): Operation not permitted\n/usr/bin/strace: PTRACE_SETOPTIONS: Operation not permitted\n/usr/bin/strace: cleanup: waitpid(-1, __WALL): No child processes\n"
+    },
+    "docker": {
+      "available": false,
+      "path": null
+    },
+    "podman": {
+      "available": false,
+      "path": null
+    },
+    "terraform": {
+      "available": false,
+      "path": null
+    },
+    "checkov": {
+      "available": false,
+      "path": null
+    },
+    "bandit": {
+      "available": false,
+      "path": null
+    },
+    "semgrep": {
+      "available": false,
+      "path": null
+    },
+    "ollama": {
+      "available": false,
+      "path": null
+    },
+    "bpftrace": {
+      "available": false,
+      "path": null
+    }
+  }
+}

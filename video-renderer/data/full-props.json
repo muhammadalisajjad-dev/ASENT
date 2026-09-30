@@ -1,0 +1,85 @@
+{
+  "evidence": {
+    "cavr": {
+      "status": "VERIFIED",
+      "packageName": "pypdf",
+      "version": "6.19.0",
+      "sha256": "7e5d6e730e7dae87d560a2cee218b852f6498c8be61966f3cd02ead971e48d14",
+      "artifact": "artifacts/pypdf-6.19.0-py3-none-any.whl",
+      "ecosystem": "PyPI",
+      "violations": 0,
+      "runId": "c6f6239d62b4",
+      "stale": false,
+      "integrityValid": true,
+      "required": [
+        "FILE_READ",
+        "FILE_WRITE"
+      ],
+      "denied": [
+        "EXECUTE_BINARY",
+        "NETWORK_CONNECT",
+        "PERSISTENCE_WRITE",
+        "PROCESS_CREATE",
+        "SECRET_ACCESS"
+      ]
+    },
+    "satra": {
+      "status": "INCONCLUSIVE",
+      "route": "GET /invoices/{invoice_id}",
+      "subject": "authenticated normal user",
+      "expectedStatus": 403,
+      "dockerExit": 125,
+      "dockerBackend": "docker",
+      "ollamaAvailable": false,
+      "oracleDiagnosis": "INCONCLUSIVE",
+      "oracleReason": "Counterfactual not independently shown to violate the contract",
+      "ruleId": "AUTHZ.IDOR.001",
+      "action": "GET invoice",
+      "counterfactual": "bypass can_access_invoice ownership guard",
+      "mutantOperator": "AST replace can_access_invoice body with return True",
+      "runId": "c6f6239d62b4",
+      "stale": false,
+      "integrityValid": true
+    },
+    "sable": {
+      "status": "PRESERVED",
+      "successor": "aws_s3_bucket.invoice_data",
+      "runId": "c6f6239d62b4",
+      "finalDecision": "REVIEW",
+      "reasons": [
+        "SATRA: INCONCLUSIVE"
+      ],
+      "stale": false,
+      "integrityValid": true
+    },
+    "integrated": {
+      "runId": "c6f6239d62b4",
+      "finalDecision": "REVIEW",
+      "reasons": [
+        "SATRA: INCONCLUSIVE"
+      ],
+      "applicable": [
+        "CAVR",
+        "SATRA",
+        "SABLE"
+      ],
+      "modules": {
+        "CAVR": {
+          "status": "VERIFIED",
+          "stale": false,
+          "integrityValid": true
+        },
+        "SATRA": {
+          "status": "INCONCLUSIVE",
+          "stale": false,
+          "integrityValid": true
+        },
+        "SABLE": {
+          "status": "PRESERVED",
+          "stale": false,
+          "integrityValid": true
+        }
+      }
+    }
+  }
+}

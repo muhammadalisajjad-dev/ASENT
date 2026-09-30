@@ -1,0 +1,24 @@
+{
+  "records": [
+    {
+      "id": "PKG-LAB-001",
+      "category": "package_threats",
+      "name": "Invoice PDF laboratory sample",
+      "description": "This is an inert controlled reproduction, not a real malicious package. A name match is supporting context only.",
+      "severity": "MEDIUM",
+      "source_id": "SRC-LAB",
+      "enabled": true,
+      "version": 1,
+      "updated_at": "2026-09-26T00:00:00+00:00",
+      "data": {
+        "ecosystem": "LOCAL",
+        "package": "invoice-pdf-lab",
+        "version": "1.0.0",
+        "classification": "controlled suspicious behavior",
+        "confidence": "controlled",
+        "artifact_hash": null,
+        "verdict_from_name": false
+      }
+    }
+  ]
+}

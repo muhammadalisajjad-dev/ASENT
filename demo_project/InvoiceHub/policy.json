@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "application": "InvoiceHub",
+  "ownership": {"subject":"authenticated normal user","action":"GET invoice","resource":"invoice owned by another user","expected_status":403,"state_effect":"none","authority":"SRS.md#FR-03"},
+  "dependencies": {"allowed":["pypdf","invoice-pdf-lab","invoice-pdf-safe"],"purpose":"PDF text extraction","allow_network":false,"allow_process":false,"allow_secret":false,"require_live_osv":false,"advisory_max_age_days":30},
+  "infrastructure": {"principal":"aws_iam_role.app","protected_asset":"aws_s3_bucket.invoice_data","actions":["s3:GetObject","s3:PutObject"],"scope":"objects","minimum_score":6,"margin":3},
+  "execution": {"builtin_lab_fallback":true,"external_requires_container":true,"timeout_seconds":30},
+  "claim":"Bounded InvoiceHub prototype assurance, not universal software safety"
+}

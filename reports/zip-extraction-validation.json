@@ -1,0 +1,11 @@
+{
+  "clean_zip_extraction": true,
+  "safe_result": "ACCEPT",
+  "exact_reconstruction": true,
+  "run_id": "cc50ad084898",
+  "modules": {
+    "SABLE": "PRESERVED",
+    "CAVR": "VERIFIED",
+    "SATRA": "ACCEPT"
+  }
+}
