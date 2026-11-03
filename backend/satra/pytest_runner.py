@@ -1,4 +1,5 @@
 """Execute pytest in a disposable copy. Arbitrary code requires a container."""
+import hashlib
 import json
 import os
 import shutil
@@ -13,6 +14,11 @@ from backend.orchestrator.hashing import copy_tree,digest,files
 from backend.integrations.tooling import availability
 
 
+def _lf_digest(data: bytes) -> str:
+    """Hash pinned Python source using the manifest's LF-normalized contract."""
+    return hashlib.sha256(data.replace(b'\r\n', b'\n')).hexdigest()
+
+
 def permitted_builtin(root):
     index=ROOT/'scenarios/laboratory_hashes.json'
     allowed=json.loads(index.read_text()).get('python_sources',[]) if index.exists() else []
@@ -21,12 +27,13 @@ def permitted_builtin(root):
     for name in ('pytest.ini','fixtures/invoice.pdf'):
         reference=ROOT/'demo_project/InvoiceHub'/name;candidate=Path(root)/name
         if not candidate.is_file() or digest(candidate.read_bytes())!=digest(reference.read_bytes()):return False
-    return all(digest((Path(root)/f).read_bytes()) in allowed for f in names if f.endswith('.py'))
+    return all(_lf_digest((Path(root)/f).read_bytes()) in allowed for f in names if f.endswith('.py'))
+
 
 def container_user_args(engine):
-    # Bind-mounted workspaces belong to the host runner. The sandbox drops all
-    # capabilities, so use the matching UID/GID instead of relying on root DAC.
-    if engine=='docker' and os.name=='posix':return ['--user',f'{os.getuid()}:{os.getgid()}']
+    # Preserve host ownership for bind-mounted Docker workspaces without changing sandbox controls.
+    if engine == 'docker' and os.name == 'posix':
+        return ['--user', f'{os.getuid()}:{os.getgid()}']
     return []
 
 def run_pytest(root,output,selected='all',trusted=False):
@@ -48,6 +55,11 @@ def run_pytest(root,output,selected='all',trusted=False):
         else:
             cmd=[sys.executable,'-I',str(ROOT/'backend/satra/runner_entry.py'),str(work),*args]
         env={'PATH':os.environ.get('PATH','/usr/bin:/bin'),'HOME':str(work),'LANG':'C.UTF-8','PYTEST_DISABLE_PLUGIN_AUTOLOAD':'1','PYTHONDONTWRITEBYTECODE':'1'}
+        if os.name == 'nt':
+            # Windows Python needs SystemRoot to initialize the Winsock provider used by TestClient.
+            system_root = os.environ.get('SYSTEMROOT') or os.environ.get('SystemRoot')
+            if system_root:
+                env['SYSTEMROOT'] = system_root
         try:
             result=subprocess.run(cmd,cwd=work,env=env,text=True,capture_output=True,timeout=40)
             (output/'stdout.log').write_text(result.stdout);(output/'stderr.log').write_text(result.stderr)

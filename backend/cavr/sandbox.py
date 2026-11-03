@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import shutil
@@ -12,12 +13,16 @@ from backend.cavr.runtime_monitor import normalize
 from backend.integrations.tooling import availability
 LAB_LOCK=threading.Lock()
 
+def _lf_digest(data):
+    """Hash trusted Python source using the manifest's LF-normalized contract."""
+    return hashlib.sha256(data.replace(b'\r\n', b'\n')).hexdigest()
+
 def run_counterfactual(source,pdf,outdir,emit):
     source,pdf,outdir=Path(source),Path(pdf),Path(outdir);outdir.mkdir(parents=True,exist_ok=True)
     caps=availability();engine=next((e for e in ('docker','podman') if caps[e]['available']),None)
     known_path=ROOT/'scenarios'/'laboratory_hashes.json'
     known=json.loads(known_path.read_text()) if known_path.exists() else {}
-    pinned=digest(source.read_bytes()) in known.get('cavr_sources',[])
+    pinned=_lf_digest(source.read_bytes()) in known.get('cavr_sources',[])
     if not engine and not pinned:return {'available':False,'reason':'Untrusted package requires Docker/Podman; host fallback only accepts hash-pinned inert sources','runs':[]}
     use_strace=bool(engine or caps['strace']['available'])
     backend=engine or ('PINNED_INERT_LAB_STRACE' if use_strace else 'PINNED_INERT_LAB_PYTHON_AUDIT')
@@ -28,11 +33,11 @@ def run_counterfactual(source,pdf,outdir,emit):
         for mode in ('normal','counterfactual'):
             emit('cavr.counterfactual_started',{'mode':mode,'backend':backend})
             with tempfile.TemporaryDirectory(prefix='asent-cavr-') as d:
-                work=Path(d);shutil.copyfile(source,work/'package.py');shutil.copyfile(pdf,work/'invoice.pdf')
+                os.chmod(d,0o755);work=Path(d);shutil.copyfile(source,work/'package.py');shutil.copyfile(pdf,work/'invoice.pdf')
                 shutil.copyfile(ROOT/'backend/cavr/lab_harness.py',work/'harness.py')
                 dest=outdir/mode;dest.mkdir(exist_ok=True)
                 if engine:
-                    cmd=[engine,'run','--rm','--network','none','--read-only','--cap-drop','ALL','--cap-add','SYS_PTRACE','--security-opt','no-new-privileges','--memory','256m','--cpus','1','--pids-limit','64','--tmpfs','/tmp:rw,noexec,nosuid,size=32m','-v',str(work)+':/input:ro','-v',str(dest)+':/out:rw','-w','/tmp','asent-sandbox:local','strace','-f','-s','1024','-e','trace=%file,%network,%process','-o','/out/trace.log','python','-I','/input/harness.py',mode,'/input/package.py','/input/invoice.pdf']
+                    user_flag=['-u',f"{os.getuid()}:{os.getgid()}"] if hasattr(os,'getuid') else [];cmd=[engine,'run','--rm',*user_flag,'--network','none','--read-only','--cap-drop','ALL','--cap-add','SYS_PTRACE','--security-opt','no-new-privileges','--memory','256m','--cpus','1','--pids-limit','64','--tmpfs','/tmp:rw,noexec,nosuid,size=32m','-v',str(work)+':/input:ro','-v',str(dest)+':/out:rw','-w','/tmp','asent-sandbox:local','strace','-f','-s','1024','-e','trace=%file,%network,%process','-o','/out/trace.log','python','-I','/input/harness.py',mode,'/input/package.py','/input/invoice.pdf']
                 else:
                     cmd=['strace','-f','-s','1024','-e','trace=%file,%network,%process','-o',str(dest/'trace.log'),sys.executable,'-I',str(work/'harness.py'),mode,str(work/'package.py'),str(work/'invoice.pdf')]
                 if not engine and not use_strace:cmd=[sys.executable,'-I',str(work/'harness.py'),mode,str(work/'package.py'),str(work/'invoice.pdf')]

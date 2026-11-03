@@ -1,5 +1,5 @@
 from backend.threat_repo.repository import active
-from backend.satra.dictionary import RULES
+from backend.satra.seed_rules import RULES
 
 EXECUTABLE_INVOICEHUB_RULES={
     'AUTHZ.IDOR.001','AUTHN.001','AUTHZ.ADMIN.001','INPUT.PDF.001'

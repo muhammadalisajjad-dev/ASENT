@@ -1,10 +1,13 @@
 name: SATRA integration
 
+permissions:
+  contents: read
+
 on:
   push:
-    branches: [sable-mid-core]
+    branches: [master, sable-mid-core, satra-feature, integration/sable-satra-cavr]
   pull_request:
-    branches: [sable-mid-core]
+    branches: [master, sable-mid-core, satra-feature, integration/sable-satra-cavr]
 
 jobs:
   satra-integration:
