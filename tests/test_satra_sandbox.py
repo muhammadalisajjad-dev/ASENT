@@ -123,3 +123,27 @@ def test_subproc_blocked():
         res = subprocess.run([sys.executable, '-I', str(ROOT / 'backend/satra/runner_entry.py'), str(p), '-q', str(p / 'test_sub.py')], capture_output=True, text=True)
         assert res.returncode == 0
         assert '1 passed' in res.stdout
+
+
+def test_runner_entry_blocks_forbidden_local_services():
+    """Host fallback audit hook must forbid access to sensitive local service ports (e.g. Ollama 11434, Docker 2375)."""
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d)
+        (p / 'pytest.ini').write_text('[pytest]\n')
+        (p / 'test_local_svc.py').write_text('''
+import socket, pytest
+
+def test_forbidden_local_port():
+    s = socket.socket()
+    with pytest.raises(PermissionError, match='forbidden in built-in test mode'):
+        s.connect(('127.0.0.1', 11434))
+
+def test_privileged_local_port():
+    s = socket.socket()
+    with pytest.raises(PermissionError, match='forbidden in built-in test mode'):
+        s.connect(('127.0.0.1', 80))
+''')
+        res = subprocess.run([sys.executable, '-I', str(ROOT / 'backend/satra/runner_entry.py'), str(p), '-q', str(p / 'test_local_svc.py')], capture_output=True, text=True)
+        assert res.returncode == 0
+        assert '2 passed' in res.stdout
+
